@@ -1,0 +1,37 @@
+html{
+    font-size:12px;
+}
+
+body{
+    --spatiere-pagina:10px;
+    --padding-sectiune:5px;
+}
+
+#grid-pagina{
+    display: block;
+}
+
+#grid-pagina > * {
+    margin-bottom: 15px;
+}
+
+.fg-img{
+    width:100%;
+    max-width: 400px;
+}
+
+
+
+/* #orar div{
+    width: 1000px;
+    overflow-x: scroll;
+    overflow-y: auto;  
+} */
+
+
+/* #tabel-orar{
+    width: 1000px;
+    overflow-x: scroll;
+    overflow-y: auto;
+    
+} */

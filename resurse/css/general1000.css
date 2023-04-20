@@ -1,0 +1,36 @@
+html{
+    font-size:16px;
+}
+
+
+body{
+    --spatiere-pagina:30px;
+    --padding-sectiune:10px;
+}
+
+
+
+#grid-pagina{
+    grid-template-columns: 1fr 1fr 1fr; 
+    /* grid-template-areas: 
+                        "z-index-intrebari z-index-intrebari"    
+                        "z-produse z-promotii"
+                        "z-fig1 z-orar"
+                        "z-fig2 z-anunturi"
+                        "z-fig3 z-parteneri"
+                        
+                        "z-welcome z-welcome"
+                        ; */
+    grid-template-areas: 
+            "z-welcome  z-welcome  z-welcome "
+            "z-promotii z-promotii z-fig-promotii"
+            "z-evenimente  z-orar  z-anunturi"
+            "z-fig1     z-produse  z-produse "
+            "z-fig2     z-produse  z-produse "
+            "z-fig3     z-produse  z-produse " 
+            "z-index-intrebari z-index-intrebari z-parteneri"
+            "z-reclame      z-reclame  z-parteneri" 
+            "z-site-server z-utilizatori-online z-utilizatori-stats"
+                        ;
+    /* gap: 15px 7.5px; */
+}
