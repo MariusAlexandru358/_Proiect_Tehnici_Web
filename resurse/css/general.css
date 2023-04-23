@@ -18,12 +18,18 @@ body{
     --colour-green:#008000;
     --colour-white-background: #dddddd;
 
+    --colour-light-purple :#a9a9e9;
+
     --culoare-mov:#C886FF;
     --roz-deschis:rgb(255,219,235);
 
     --culoare-fundal:var(---colour-white-background);
+    --culoare-fundal-header: #708EA1;
+    --culoare-fundal-footer: #BEDBED;
     --culoare-text:black;
-    --culouare-highlight:var(--colour-orange);
+    --culoare-highlight-primary:var(--colour-orange);
+    --culoare-highlight-secondary:var(--colour-yellow);
+    --culoare-highlight-dark:var(--colour-light-purple);
 
     --culoare-fundal-night:var(--colour-blue);
     --culoare-text-night:var(--colour-yellow);
@@ -37,7 +43,17 @@ body.dark{
 }
 
 
+header h1{
+    /* background-color: var(--culoare-fundal-header); */
+    padding-left: 0%;
+    font-size: 50px;
+    font-weight: bold;
 
+}
+footer{
+    margin-top:var(--spatiere-pagina);
+    /* background-color: var(--culoare-fundal-footer); */
+}
 body{
     background-color: var(--culoare-fundal);
     color:var(--culoare-text);
@@ -46,6 +62,7 @@ body{
     min-width:450px;
     margin:0;
 }
+
 
 h1{
     font-size: 2.5rem;
@@ -149,7 +166,7 @@ h2{
     transition: background-color .5s linear;
 }
 #tabel-orar tbody tr:hover td:nth-child(even) {
-    background-color: var(--colour-yellow);
+    background-color: var(--culoare-highlight-secondary);
 }
 
 
@@ -167,7 +184,7 @@ h2{
     transition: background-color .5s linear;
 }
 #tabel-orar tbody tr:hover{
-    background-color: var(--colour-yellow);
+    background-color: var(--culoare-highlight-secondary);
 }
 
 
@@ -175,26 +192,26 @@ h2{
     transition: background-color .5s linear;
 }
 #tabel-orar tbody tr:hover td:nth-child(odd) {
-    background-color: var(--colour-yellow);
+    background-color: var(--culoare-highlight-secondary);
 }
 
 
 #tabel-orar tbody tr td:hover {
-    background-color: var(--colour-orange);
+    background-color: var(--culoare-highlight-primary);
 }
 #tabel-orar tbody tr td:nth-child(even):hover {
-    background-color: var(--colour-orange);
+    background-color: var(--culoare-highlight-primary);
 }
 #tabel-orar tbody tr td:nth-child(odd):hover {
-    background-color: var(--colour-orange);
+    background-color: var(--culoare-highlight-primary);
 }
 #tabel-orar tbody tr.rs td:nth-child(odd):hover {
-    background-color: var(--colour-orange);
+    background-color: var(--culoare-highlight-primary);
 }
 
 
 #tabel-orar thead tr{
-    background: #a9a9e9;
+    background: var(--culoare-highlight-dark);
 }
 
 
@@ -409,7 +426,12 @@ h2{
     
     text-decoration: none;
 }
-
+#watermark{
+    display: none;
+}
+#banner-print{
+    display: none;
+}
 
 
 
@@ -423,5 +445,5 @@ figcaption{
 }
 
 main{
-    margin-top:100px;
+    margin-top:calc(2*var(--spatiere-pagina));
 }

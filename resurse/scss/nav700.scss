@@ -1,0 +1,67 @@
+body{
+    --inaltime-meniu:40px;
+    --latime-buton:100%;
+}
+
+
+#hamburger{
+    display: block;
+    margin:0;
+
+    >img{
+    
+        height: var(--inaltime-meniu);
+        width:auto;
+        display: block;
+        margin:0;
+    }
+}
+
+// #hamburger>img{
+    
+//     height: var(--inaltime-meniu);
+//     width:auto;
+//     display: block;
+//     margin:0;
+// }
+
+ul.meniu{
+    display: none;
+}
+
+#ch-menu:checked+ul.meniu{
+    display: block;
+    li{
+        text-shadow: none;
+        >div{
+            position: relative;
+            animation-name: animatie_meniu;
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1;
+            transform-origin: center top;
+        }
+        position: relative;
+        &:hover{
+            z-index: 10;
+        }
+    }
+
+}
+
+
+
+@keyframes animatie_meniu{
+    0%{
+        opacity:0;
+        transform: scale(0, 1);
+    }
+    // 50%{
+    //     transform: scale(0, 0.5);
+    // }
+    100%{
+        opacity:1;
+        transform: scale(1, 1);
+    }
+}
