@@ -1,1 +1,1 @@
-# _Proiect_Techinici_Web
+# _Proiect_Tehnici_Web
