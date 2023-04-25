@@ -1,9 +1,10 @@
-nav, #link-top-p, iframe, #taburi-iframe, figure {
+nav, #link-top-p, iframe, .taburi-iframe, figure {
   display: none;
 }
 
 #banner-print, #grid-pagina {
   display: block;
+  background-color: white;
 }
 
 .link {
@@ -26,22 +27,27 @@ footer {
 }
 
 #watermark {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+#watermark::after {
   color: var(--colour-light-purple);
   display: block;
   opacity: 0.65;
   border: double var(--colour-light-purple);
-  font-size: 100px;
+  font-size: 60px;
   transform: scale(1, 0.754);
-  position: fixed;
+  content: "Alexandru Marius-Crisitan";
+}
+
+#banner-print {
+  border: dotted black;
+  position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -100;
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  transform: rotate(-45deg);
+  margin: 0 250px;
 }
 
 @page :left {
