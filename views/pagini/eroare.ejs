@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        <meta name="keywords" content="Ticker Tinker, ceas, ceas de mână, ceas de perete, ieftin, comandă, comandă personalizată, maintanence, service, oferte, de calitate, ">
+        <meta name="description" content="Ticker Tinker - Clock shop and service. Ceasuri de toate tipurile, iefine sau de calitate. Magazin online. Service, maintanence, accesorii">
+        <title>TickerTinker</title>
+        <link rel="stylesheet" type="text/css" href="/resurse/css/eroare.css">
+        <%- include("../fragmente/head.ejs");  %> 
+
+
+        
+
+
+
+
+    </head>
+    
+    <body>
+        
+    <%- include("../fragmente/header.ejs");  %> 
+
+    <main>
+        <div id="err-coloane">
+			<div id="err-imag">
+				<img src="<%- locals.imagine %>" />
+			</div>
+			<section>
+				<h2><%- locals.titlu %></h2>
+				<p><%- locals.text %></p>
+			</section>
+		</div>
+    </main>
+    
+    <%- include("../fragmente/footer.ejs");  %> 
+
+
+    </body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>TickerTinker</title>
+        
+        <meta name="keywords" content="Ticker Tinker, ceas, ceas de mână, ceas de perete, ieftin, comandă, comandă personalizată, maintanence, service, oferte, de calitate, ">
+        <meta name="description" content="Ticker Tinker - Clock shop and service. Ceasuri de toate tipurile, iefine sau de calitate. Magazin online. Service, maintanence, accesorii">
+        
+        <%- include("../fragmente/head.ejs") %>
+        
+
+    </head>
+    <body>
+        
+        <%- include("../fragmente/header.ejs") %>
+
+        <main>
+            <div id="grid-pagina">
+                <section id="welcome">
+                    <h2>Bine ați venit</h2>
+                    <p class="intro">Vă mulțumim că ne vizitați site-ul.</p>
+                    
+                    <!-- <div class="intro-oferte"><div></div><div></div><div></div><div></div><div></div></div> -->
+                    <p class="anunt intro">Cu ani de experiență în spate, ne-am consacrat ca unii dintre cei mai de încredere producători de ceasuri din țară. 
+                        <br> Vreți un accesoriu util sau să vă decorați camera cu voie bună? Alegeți unul dintre modele noastre sau faceți o comandă personalizată.</p>
+                    <p><b>Nu lăsați timpul să treacă pe lângă dumneavoastră și cei dragi!</b></p> 
+                    <p><i>Poveste de succes de 10 ani!</i></p>
+                    <!-- <div id="dv-prezentare-1">
+                        <div id="dv-prezentare">
+                        <picture>
+                            <source srcset="./resurse/imagini/m.jpg" media="(max-width:700px)"/>
+                            <source srcset="./resurse/imagini/m.jpg" media="(max-width:1200px)"/>
+                            <img src="./resurse/imagini/m.jpg" alt="text"/>
+                        </picture>
+                        </div>
+                    </div> -->
+
+                <!-- <hr class="pr"/>
+                <div id="container-video">
+                    <img class="f" src="resurse/imagini/f.png" alt="f">
+                    <div id="centrare-video">
+                        <div id="clip-video">
+                            <div id="stil-video">
+                                <video width="320" height="240"  playsinline autoplay loop muted>
+                                    <source src="resurse/video/C.mp4" type="video/mp4">
+                                    <source src="resurse/video/C.ogv" type="video/ogv">
+                                    <track default src="data:image/png;base64, V0VCVlRUIC0gQ2lvY29sYXTEgwoKMDA6MDAuMDAwIC0tPiAwMDowMy4wMDAgbGluZTowCkNpb2NvbGF0xIMhISEKCjAwOjAzLjAwMCAtLT4gMDA6MDcuMDAwIGxpbmU6MApNdWx0xIMgY2lvY29sYXTEgyEhISEKCjAwOjA5LjAwMCAtLT4gMDA6MTQuMDAwIGxpbmU6MApVcHMsIGFtIG11cmTEg3JpdCBtYXNhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgQ2lvY29sYXTEg8SDxIPEg8SDxIMhCgo=" kind="captions" srclang="ro" label="romana">
+                                    <track src="data:image/png;base64, V0VCVlRUIC0gQ2hvY29sYXRlDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpDaG9jb2xhdGUhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkxvdHMgb2YgY2hvY29sYXRlISEhIQ0KDQowMDowOS4wMDAgLS0+IDAwOjE0LjAwMA0KT3VwcywgdGFibGUgZ290IGRpcnR5IQ0KDQowMDoxNC41MDAgLS0+IDAwOjE5LjAwMA0KRG9lc24ndCBtYXR0ZXIhIENob2NvbGF0ZSEhIQ0KDQo=" kind="captions" srclang="en" label="engleza">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                </section>
+
+
+
+                <section id="promotii">
+                    <h2>Promoții</h2>
+                    <article>
+
+                        <h3 class="titlu">Ofertă de paște!</h3>
+                        <!-- Add links to class produse/link and move style to css -->
+                        <p>Hristos a înviat!</p> 
+                        <p>Reduceri la <a href="copii.html#produse" class="link"><b>ceasurile pentru copii</b></a> cu până la 25%.
+                            <br>Ofertă 1 + 1 gratis la toate ceasurile cu motive religioase.</p>
+                        <p>Oferta este valabilă până la data de 18 aprilie 2023 inclusiv. Profitați de această ocazie pentru a cumpăra ceva dumneavoastră sau celor dragi.</p> 
+
+                    </article>
+
+                    <article>
+
+                        <h3 class="titlu">Super ofertă de weekend!</h3>
+                        <p>În acest weekend, <b>Ticker Tinker</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> cu ocazia sărbătorilor pascale pentru toate produsele cumpărate în intervale orare 10-12 și 15-17.</p>
+                        <p>Oferta este valabilă doar în zilele de sâmbătă și duminică la sediile <abbr title="Ticker Tinker">TT</abbr>.</p>
+                        <!-- <p>în cazul în care cumpărați mai mult de zece prăjituri primiți si un card de fidelitate pentru Salvare!</p> -->
+                        
+                    </article>
+
+                    <article>
+
+                        <h3>Ofertă pachet</h3>
+                        <p>Ticker Tinker oferă pachete cuprinzând:</p>
+                        <ol>
+                            <li>Un set de 2 ceasuri de perete + 1 ceas deșteptător pentru a decora o casă nouă</li>
+                            <li>Ceasuri de mână asortate pentru tine și cineva special</li>
+                            <!-- <li></li> -->
+                        </ol>
+
+                    </article>
+
+                    <article>
+                        <!--
+                        <h3 class="titlu bcd">Promotie 3</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed suscipit mauris. Proin commodo, arcu in mollis ullamcorper, tortor elit pulvinar dui, at vehicula mauris felis laoreet mauris. Nunc vulputate risus ex.</p>
+                        <ol>
+                            <li>Suspendisse tempus imperdiet elit in.</li>
+                            <li>Quisque feugiat, mi eget condimentum</li>
+                            <li>Nunc vitae semper lacus, sed hendrerit purus </li>
+                            <li>Aenean imperdiet lorem vitae velit porta</li>
+                        </ol>
+                         -->
+                    </article>
+
+                    <article>
+                        <!--
+                        <h3>Promotie 4</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed suscipit mauris. Proin commodo, arcu in mollis ullamcorper, tortor elit pulvinar dui, at vehicula mauris felis laoreet mauris. Nunc vulputate risus ex.</p>
+                        <ol>
+                            <li>Suspendisse tempus imperdiet elit in.</li>
+                            <li>Quisque feugiat, mi eget condimentum</li>
+                            <li>Nunc vitae semper lacus, sed hendrerit purus </li>
+                            <li>Aenean imperdiet lorem vitae velit porta</li>
+                        </ol>
+                         -->
+                    </article>
+                </section>
+
+
+                <figure  id="fig-promotii" class="fg-img">
+                    <img src="resurse/imagini/briose-frisc.png" alt="model-promotie">
+                    <figcaption><i class="fa-regular fa-clock fa-spin"></i></figcaption>
+                </figure>
+
+
+
+
+                
+
+
+
+                <section id="evenimente">
+                    <h2>Evenimente <i class="fa-solid fa-calendar-days"></i></h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo libero mollitia exercitationem laboriosam magni magnam, error sapiente dolorem, soluta porro expedita, non quia veritatis atque asperiores enim repellat! Quasi, eius.</p>
+                </section>
+
+
+
+                <section id="orar">
+                    <!-- <h2>Orar</h2> -->
+                    <div>
+                    <table id="tabel-orar">
+                        <caption>Program de lucru</caption>
+                        <thead>
+                            <tr>
+                                <!-- <th></th> -->
+                                <th> Perioadă </th>
+                                <th> Zi </th>
+                                <th> Interval dimineață </th>
+                                <th> Pauză de masă </th>
+                                <th> Interval seară </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="rs">
+                                <!-- <td></td> -->
+                                <td rowspan="5">Zile<br/>Lucrătoare</td>
+                                <td>Luni</td>
+                                <td>9-13</td>
+                                <td>13-15</td>
+                                <td>15-19</td>
+                            </tr>
+                            <tr>
+                                <!-- <td></td> -->
+                                
+                                <td>Marți</td>
+                                <td>9-13</td>
+                                <td>13-15</td>
+                                <td>15-19</td>
+                            </tr>
+                            <tr>
+                                <!-- <td></td> -->
+                                
+                                <td>Miercuri</td>
+                                <td>9-13</td>
+                                <td>13-15</td>
+                                <td>15-19</td>
+                            </tr>
+                            <tr>
+                                <!-- <td></td> -->
+                                
+                                <td>Joi</td>
+                                <td>9-13</td>
+                                <td>13-15</td>
+                                <td>15-19</td>
+                            </tr>
+                            <tr>
+                                <!-- <td></td> -->
+                                
+                                <td>Vineri</td>
+                                <td>9-13</td>
+                                <td>13-15</td>
+                                <td>15-19</td>
+                            </tr>
+                            <tr class="rs">
+                                <!-- <td></td> -->
+                                <td rowspan="2">Weekend</td>
+                                <td>Sambată</td>
+                                <td>10-12</td>
+                                <td>12-13</td>
+                                <td>13-16</td>
+                            </tr>
+                            <tr>
+                                <!-- <td></td> -->
+                                <td>Duminică</td>
+                                <td>10-14</td>
+                                <td>-</td>
+                                <td>Închis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div> 
+                </section>
+
+
+
+                <section id="anunturi">
+                    <h2>Anunțuri <i class="fa-regular fa-exclamation fa-flip"></i></h2>
+                    <p><time datetime="2023-03-03">3 martie 2023</time> - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam optio saepe inventore eligendi dignissimos nihil assumenda ducimus delectus, beatae quia iusto recusandae perspiciatis eius sapiente illo dolorem, quas animi possimus?</p>
+                    <p><time datetime="2023-04-16">16 aprilie 2023</time> - <strong>Hristos a înviat!</strong> Paște fericit tuturor.</p>
+                    <!-- <p><time datetime="2023-04-16">16 aprilie 2023</time> <strong>Hristos a înviat!</strong> Paște fericit tuturor.</p> -->
+                </section>
+
+
+                
+
+                
+
+
+                <section id="produse">
+                    <h2>Produsele noastre</h2>
+                    <!-- <p></p> -->
+                    <section>
+                        <h3>Ceasuri de perete</h3>
+                        <!-- <p></p> -->
+                        <!-- <p>Categorii:</p> -->
+                        <ul>
+                            <li>Clasice</li>
+                            <li>Retro</li>
+                            <li>Hypermodern</li>
+                            <li>Casual</li>
+                            <li>Tematice</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Ceasuri de mână</h3>
+                        <!-- <p></p> -->
+                        <!-- <p>Categorii:</p> -->
+                        <ul>
+                            <li>Clasice</li>
+                            <li>Retro</li>
+                            <li>Hypermodern</li>
+                            <li>Pentru copii</li>
+                            <li>Tematice</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h3>Ceasuri deșteptătoare</h3>
+                        <!-- <p>Categorii:</p> -->
+                        <ul>
+                            <li>Clasice</li>
+                            <li>Digitale</li>
+                            <li>Tematice</li>
+                        </ul>
+                    </section>
+                </section>
+
+
+
+                <figure id="fig1" class="fg-img">
+                    <img src="resurse/imagini/_clock_alarm_clasic1.png" alt="ceas-model-1">
+                    <figcaption><a class="link" href="resurse/imagini/_clock_alarm_clasic1.png" download="_clock_alarm_clasic1">Ceas 1</a></figcaption>
+                </figure>
+                <figure id="fig2" class="fg-img">
+                    <img src="resurse/imagini/_clock_alarm_fun1.png" alt="ceas-model-2">
+                    <figcaption><a class="link" href="resurse/imagini/_clock_alarm_fun1.png" download="_clock_alarm_casual1">Ceas 2</a></figcaption>
+                </figure>
+                <figure  id="fig3" class="fg-img">
+                    <img src="resurse/imagini/briose-frisc.png" alt="ceas-model-3">
+                    <figcaption>Ceas 3</figcaption>
+                </figure>
+
+
+
+
+                <section id="index-intrebari">
+                    <h2>Întrebări frecvente</h2>
+                    <details><summary>Oferiți servicii de reparare și întreținere?</summary>
+                        <p>Da! În timpul programului în orice sediu al nostru veți putea beneficia de aceste servicii.</p>
+                    </details>
+                    <details><summary>Primiți comenzi personalizate?</summary>
+                        <p>Da! Orice de la un cadou pentru cineva drag până la mai multe seturi pentru un eveniment.</p>
+                    </details>
+                    <details><summary>Oferiți servicii online?</summary>
+                        <p>Foarte! Da! Puteți comanda un produs online și să îl ridicați de la un sediu la o oră stabilită.</p>
+                    </details>
+                    <details><summary>Oferiți garanție?</summary>
+                        <p>Da!</p>
+                    </details>
+                    <details><summary>Sunteți asociați cu alte companii?</summary>
+                        <p>Avem numeroși parteneri din țară cât și internaționali.</p>
+                    </details>
+                    <details><summary>Sunteți în acțiuni sociale sau politice?</summary>
+                        <p>Ne rezervăm dreptul de a nu răspunde la această întrebare. Mulțumim pentru înțelegere!</p>
+                    </details>
+                </section>
+    
+             
+
+
+                <section id="parteneri">
+                    <h2>Parteneri</h2>
+                    <p>Suntem mândrii să avem parteneriate cu următoarele companii și instituții:</p>
+                    <ul>
+                        <li><a href="https://unibuc.ro/" target="_blank">Universitatea din București</a></li>
+
+                        <li><a href="https://redacted.inc/" target="_blank">Redacted News</a></li>
+
+                        <li>5 O'clock Tea</li>
+
+                        <li>株式会社ぴえろ</li>
+                    </ul>
+                </section>
+                
+                
+
+
+
+                <section id="reclame">
+                    <div class="container-iframe">
+                    <h2 class="hearder-iframe">Videoclipuri</h2>
+                    <p class="text-iframe">Sunteți invitați să urmăriți următoarele videoclipuri <br> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed ratione temporibus perspiciatis est? 
+                                    Eveniet a dicta ratione nam possimus blanditiis perspiciatis veritatis voluptates aliquid quos, earum quasi odit suscipit nesciunt.</p>
+                    <div class="taburi-iframe">
+                    <a href="https://www.youtube-nocookie.com/embed/IQhnNnYl8sg" target="ifr-video">Explorează interiorul unui ceas</a>
+                    <a href="https://www.youtube-nocookie.com/embed/iI2D4LbV6Os" target="ifr-video" >De ce să cumperi un ceas</a>
+                    <a href="https://www.youtube-nocookie.com/embed/9vAKYjCLN_k" target="ifr-video" >[Arhivă] Cum a început totul</a><br/>
+                    
+                    </div>
+                
+                    <iframe class="ifr-video" name="ifr-video" width="560" height="315" src="https://www.youtube-nocookie.com/embed/IQhnNnYl8sg" title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                    </div>
+                </section>
+
+
+
+
+
+                <section id="site-server">
+                    <h2>Server/Site</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo libero mollitia exercitationem laboriosam magni magnam, error sapiente dolorem, soluta porro expedita, non quia veritatis atque asperiores enim repellat! Quasi, eius.</p>
+                </section>
+    
+                <section id="utilizatori-online">
+                    <h2>Utilizatori online</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo libero mollitia exercitationem laboriosam magni magnam, error sapiente dolorem, soluta porro expedita, non quia veritatis atque asperiores enim repellat! Quasi, eius.</p>
+                    <p>ip: <%- locals.ip %> </p>
+                </section>
+    
+                <section id="utilizatori-stats">
+                    <h2>Statistici</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo libero mollitia exercitationem laboriosam magni magnam, error sapiente dolorem, soluta porro expedita, non quia veritatis atque asperiores enim repellat! Quasi, eius.</p>
+                </section>
+
+
+            </div>
+
+
+            
+            <!-- <section id="galerie-statica">
+                <h2>Galerie</h2>
+                <div id="grid-galerie">
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                    <figure>
+                    <img src="resurse/imagini/b.png" alt="b">
+                    <figcaption></figcaption>
+                    </figure>
+                
+                </div>
+            </section> -->
+
+            <p id="watermark"></p>
+        </main>
+
+
+
+        <%- include("../fragmente/footer.ejs") %>
+
+
+        
+    
+    </body>
+</html>
+
+
+
+
+
+
+
+
