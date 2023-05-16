@@ -154,7 +154,7 @@
                         <tbody>
                             <tr class="rs">
                                 <!-- <td></td> -->
-                                <td rowspan="5">Zile<br/>Lucrătoare</td>
+                                <td rowspan="5">Zile<br>Lucrătoare</td>
                                 <td>Luni</td>
                                 <td>9-13</td>
                                 <td>13-15</td>
@@ -335,7 +335,7 @@
                     <div class="taburi-iframe">
                     <a href="https://www.youtube-nocookie.com/embed/IQhnNnYl8sg" target="ifr-video">Explorează interiorul unui ceas</a>
                     <a href="https://www.youtube-nocookie.com/embed/iI2D4LbV6Os" target="ifr-video" >De ce să cumperi un ceas</a>
-                    <a href="https://www.youtube-nocookie.com/embed/9vAKYjCLN_k" target="ifr-video" >[Arhivă] Cum a început totul</a><br/>
+                    <a href="https://www.youtube-nocookie.com/embed/9vAKYjCLN_k" target="ifr-video" >[Arhivă] Cum a început totul</a><br>
                     
                     </div>
                 
@@ -344,6 +344,36 @@
 
                     </div>
                 </section>
+
+
+
+                <section id="galerie-statica">
+                    <h2>Galerie</h2>
+                    <div id="grid-galerie">
+                        <%  for (let imag of locals.imagini) {  %>
+                            <%  d=new Date();   %>
+                            
+                            <%  if( (d.getHours()>Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)))    ||  
+                                    (d.getHours()==Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)) && d.getMinutes()>=Number(imag.timp.substr(3,2)))   ||
+                                    (d.getHours()==Number(imag.timp.substr(6,2)) && d.getHours()>Number(imag.timp.substr(0,2)) && d.getMinutes()<=Number(imag.timp.substr(9,2)))   )
+                            %>
+                            <%  {   %>
+                           
+                                <figure>
+                                    <picture>
+                                        <source srcset="<%- imag.cale_imagine_mediu %>" media="(max-width:1100px)" />
+                                        <img src="<%- imag.cale_imagine %>" alt="<%- (imag.alt)?imag.alt:imag.titlu %>">
+                                    </picture>
+                                    <figcaption><%- imag.descriere %></figcaption>
+                                    <title><%- imag.titlu %></title>
+                                </figure>
+                    
+                    
+                                <%  }  %>
+                        <%  }  %>
+                    </div>
+                </section>
+
 
 
 
@@ -404,8 +434,13 @@
                 
                 </div>
             </section> -->
+            
+        
 
             <p id="watermark"></p>
+        
+        
+
         </main>
 
 

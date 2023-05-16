@@ -1,0 +1,10 @@
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
+    $primary: #0050F0,
+    $secondary: #5b0cf0,
+
+    $body-bg: #dddddd,
+    $border-width: 3px,
+    // $font-size-base: 
+    $font-family-base: 'Crimson Pro',
+    
+)

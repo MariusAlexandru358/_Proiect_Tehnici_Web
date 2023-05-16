@@ -2,38 +2,50 @@
 	"cale_galerie":"resurse/imagini/galerie",
 	"imagini": [
 		{
-			"fisier":"briose-frisca.png",
+			"cale_imagine":"briose-frisca.png",
+			"titlu":"Nume imagine",
 			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie"]
+			"timp":"09:00-22:00"
 		},
 		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie"]
+			"cale_imagine":"clatite.png",
+			"titlu":"Clatite titlu",
+			"descriere":"Clatite descriere",
+			"timp":"09:00-22:00"
 			
 		},
 		{
-			"fisier":"gogosi.png",
+			"cale_imagine":"gogosi.png",
+			"titlu":"Nume imagine",
 			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie"]
+			"timp":"09:00-22:00"
 		},
 		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie"]
+			"cale_imagine":"tort-scortisoara.png",
+			"titlu":"tort-scortisoara titlu",
+			"descriere":"tort-scortisoara descriere",
+			"timp":"09:00-22:00"
 		},
 		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată"
+			"cale_imagine":"prajitura-ciocolata.png",
+			"titlu":"Nume imagine",
+			"descriere":"Prăjitură cu ciocolată",
+			"timp":"00:00-22:00"
 		},
 		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
+			"cale_imagine":"tarta-afine.png",
+			"titlu":"Nume imagine",
+			"descriere":"Tartă cu afine",
+			"timp":"00:00-22:00"
 		},
+		
 		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
+			"cale_imagine":"tort-trandafiri.png",
+			"titlu":"Nume imagine",
+			"descriere":"Tort special",
+			"timp":"00:00-22:00"
 		}
+		
+
 	]
 }

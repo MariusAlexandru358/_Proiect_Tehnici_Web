@@ -35,6 +35,7 @@ body{
     --culoare-text-night:var(--colour-yellow);
     --spatiere-pagina:50px;
     --padding-sectiune:15px;
+    --padding-intern:10px;
 }
 
 body.dark{
@@ -97,7 +98,8 @@ h2{
                 "z-fig1     z-produse  z-produse  z-index-intrebari"
                 "z-fig2     z-produse  z-produse  z-index-intrebari"
                 "z-fig3     z-produse  z-produse  z-parteneri" 
-                "z-reclame     z-reclame  z-reclame  z-parteneri" 
+                "z-reclame     z-reclame  z-reclame  z-parteneri"
+                "z-galerie-statica z-galerie-statica z-galerie-statica z-galerie-statica" 
                 /* "z-reclame     z-reclame  z-parteneri  z-parteneri"  */
                 /* "z-index-intrebari z-index-intrebari z-index-intrebari z-parteneri" */
                 "z-site-server z-site-server z-utilizatori-online z-utilizatori-stats"
@@ -312,6 +314,10 @@ h2{
 
 #evenimente{
     grid-area: z-evenimente;
+}
+
+#galerie-statica{
+    grid-area: z-galerie-statica;
 }
 
 #site-server{

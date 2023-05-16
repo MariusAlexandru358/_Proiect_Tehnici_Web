@@ -1,11 +1,16 @@
 const express=require("express");
 const fs=require('fs');
 const path=require('path');
+const sharp=require('sharp');
+const sass=require('sass');
+
 app=express();
 
 obGlobal = {
     obErori:null,
-    obImagini:null
+    obImagini:null,
+    folderScss: path.join(__dirname, "resurse/scss"),
+    folderCss: path.join(__dirname, "resurse/css")
 }
 
 
@@ -14,13 +19,71 @@ console.log("Cale fisier", __filename);
 console.log("Director de lucru", process.cwd());
 
 
-vectorFodere=["temp","temp1"];
+vectorFodere=["temp","temp1","backup"];
 for(let folder of vectorFodere){
     let caleFolder=path.join(__dirname,folder);
     if(!fs.existsSync(caleFolder)){
         fs.mkdirSync(caleFolder);
     }
 }
+
+
+
+
+function compileazaScss(caleScss, caleCss){
+    console.log("cale:",caleCss);
+    if(!caleCss){
+        // let vectorCale=caleScss.split("\\")
+        // let numeFisExt=vectorCale[vectorCale.length-1];
+        // let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
+        let numeFis=path.basename(toString(caleScss),'.scss');
+        caleCss=numeFis+".css";
+    }
+    
+    if (!path.isAbsolute(caleScss))
+        caleScss=path.join(obGlobal.folderScss,caleScss );
+    if (!path.isAbsolute(caleCss))
+        caleCss=path.join(obGlobal.folderCss,caleCss );
+    
+    // la acest punct avem cai absolute in caleScss si  caleCss
+
+    // let vectorCale=caleCss.split("\\");
+    // let numeFisCss=vectorCale[vectorCale.length-1];
+    // let numex=numeFisCss.split(".")[0]+(new Date()).getTime()+".css";
+    let numeFisCss=path.basename(toString(caleCss));
+    let numex=path.basename(toString(caleCss),'.css')+(new Date()).getTime()+".css";
+    if (fs.existsSync(caleCss)){
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numeFisCss ))// +(new Date()).getTime()
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numex ))
+    }
+    rez=sass.compile(caleScss, {"sourceMap":true});
+    fs.writeFileSync(caleCss,rez.css);
+    console.log("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nCompilare SCSS\n\n",rez,"\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+}
+// compileazaScss("a.scss");
+
+
+fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
+    console.log("\n",eveniment, numeFis,"\n");
+    if (eveniment=="change" || eveniment=="rename"){
+        let caleCompleta=path.join(obGlobal.folderScss, numeFis);
+        if (fs.existsSync(caleCompleta)){
+            compileazaScss(caleCompleta);
+        }
+    }
+})
+
+
+vFis=fs.readdirSync(obGlobal.folderScss)
+for(let numefis of vFis){
+    if(path.extname(numefis)==".scss")
+    compileazaScss(numefis);
+}
+
+
+
+
+
 
 
 app.set("view engine","ejs");
@@ -39,7 +102,7 @@ app.get("/favicon.ico", function(req,res){
 })
 
 app.get(["/","/index","/home"],function(req,res){
-    res.render("pagini/index",{ip: req.ip});
+    res.render("pagini/index",{ip: req.ip, imagini:obGlobal.obImagini.imagini});
 })
 
 app.get("/despre",function(req,res){
@@ -97,6 +160,32 @@ function Gen_Erori(){
     obGlobal.obErori=obErori;
 }
 Gen_Erori();
+
+function Gen_Imagini(){
+    var continut= fs.readFileSync(__dirname+"/resurse/json/galerie.json").toString("utf-8");
+
+    obGlobal.obImagini=JSON.parse(continut);
+    let vImagini=obGlobal.obImagini.imagini;
+
+    let caleAbs=path.join(__dirname,obGlobal.obImagini.cale_galerie);
+    let caleAbsMediu=path.join(__dirname,obGlobal.obImagini.cale_galerie, "mediu");
+    if (!fs.existsSync(caleAbsMediu))
+        fs.mkdirSync(caleAbsMediu);
+
+    //for (let i=0; i< vErori.length; i++ )
+    for (let imag of vImagini){
+        [numeFis, ext]=imag.cale_imagine.split(".");
+        let caleFisAbs=path.join(caleAbs,imag.cale_imagine);
+        let caleFisMediuAbs=path.join(caleAbsMediu, numeFis+".webp");
+        sharp(caleFisAbs).resize(400).toFile(caleFisMediuAbs);
+        imag.cale_imagine_mediu=path.join("/", obGlobal.obImagini.cale_galerie, "mediu",numeFis+".webp" )
+        imag.cale_imagine=path.join("/", obGlobal.obImagini.cale_galerie, imag.cale_imagine )
+        //eroare.imagine="/"+obGlobal.obErori.cale_baza+"/"+eroare.imagine;
+        console.log("CALE IMAGINE:   "+imag.cale_imagine+"\n")
+    }
+    console.log("\n"+obGlobal.obImagini.cale_galerie+"\n\n")
+}
+Gen_Imagini();
 
 
 function Afis_Eroare(res, identificator, _titlu="Titlul default", _text, _imagine){
