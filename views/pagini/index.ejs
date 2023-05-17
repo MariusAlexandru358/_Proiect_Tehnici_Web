@@ -68,6 +68,8 @@
 
                     </article>
 
+                    <hr class="center-ball">
+
                     <article>
 
                         <h3 class="titlu">Super ofertă de weekend!</h3>
@@ -76,6 +78,8 @@
                         <!-- <p>în cazul în care cumpărați mai mult de zece prăjituri primiți si un card de fidelitate pentru Salvare!</p> -->
                         
                     </article>
+
+                    <hr class="center-ball">
 
                     <article>
 
@@ -88,6 +92,8 @@
                         </ol>
 
                     </article>
+
+                    <!-- <hr class="center-ball"> -->
 
                     <article>
                         <!--
@@ -118,7 +124,7 @@
 
 
                 <figure  id="fig-promotii" class="fg-img">
-                    <img src="resurse/imagini/briose-frisc.png" alt="model-promotie">
+                    <img src="resurse/imagini/alarm-clock_01.jpg" alt="model-promotie">
                     <figcaption><i class="fa-regular fa-clock fa-spin"></i></figcaption>
                 </figure>
 
@@ -277,7 +283,7 @@
                     <figcaption><a class="link" href="resurse/imagini/_clock_alarm_fun1.png" download="_clock_alarm_casual1">Ceas 2</a></figcaption>
                 </figure>
                 <figure  id="fig3" class="fg-img">
-                    <img src="resurse/imagini/briose-frisc.png" alt="ceas-model-3">
+                    <img src="resurse/imagini/handwatch_02.jpg" alt="ceas-model-3">
                     <figcaption>Ceas 3</figcaption>
                 </figure>
 
@@ -347,12 +353,16 @@
 
 
 
-                <section id="galerie-statica">
-                    <h2>Galerie</h2>
+
+                <section id="galerie-statica" class="efect-css-reflexie-text">
+                    <div><h2 id="text" class="efect-h-gal">Galerie CGI</h2>
+                    <h2 id="text-reflectat" class="efect-h-gal">Galerie CGI</h2></div>
+                    <p>Parteneriatul cu Universitatea București a făcut posibilă organizarea concursului UniBuc-CGI-2023, care a produs rezultate impresionante. 
+                        Zece studenti diferiți a căror date personale sunt protejate de legea 363 28/12/2018 au fost premiați pentru munca lor: </p>
                     <div id="grid-galerie">
                         <%  for (let imag of locals.imagini) {  %>
                             <%  d=new Date();   %>
-                            
+                            <!--  -->
                             <%  if( (d.getHours()>Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)))    ||  
                                     (d.getHours()==Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)) && d.getMinutes()>=Number(imag.timp.substr(3,2)))   ||
                                     (d.getHours()==Number(imag.timp.substr(6,2)) && d.getHours()>Number(imag.timp.substr(0,2)) && d.getMinutes()<=Number(imag.timp.substr(9,2)))   )

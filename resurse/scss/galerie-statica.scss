@@ -3,7 +3,7 @@
     padding-right:var(--padding-intern);
   }
   
-  #grid-galerie {
+ #grid-galerie {
     display:grid;
     grid-template-columns: repeat(4,1fr);
     grid-row-gap:0.5em;
@@ -12,8 +12,8 @@
     
     grid-template-areas: 
         "g1 g2 g3 g4"
-        "g10 . .  g5"
-        "g9 g8 g7 g6"
+        "g5  . .  g6"
+        "g7 g8 g9 g10"
                         ;
     figure{
         display: none;
@@ -48,8 +48,71 @@
 
 }
   
+@media only screen and (max-width:1300px){}
+ 
+.efect-css-reflexie-text{
+    #text-reflectat{
+        position:relative;
+        // left:0;
+        // top:100%;
+        transform-origin:0 0;
+        // /*conetaza ordinea transformarilor!*/translate(-66%,185%);translate(-100%,140%);
+        max-width: 35%;
+        transform: rotate(195deg) skew(30deg) translate(-35rem,5rem);
+        // transform: rotate(15deg) skew(30deg) scale(-1,1) translate(100px,-80px); 
+        opacity:0.75;
+        // background-color: #b5ffff;
 
-  
+        // &:hover{
+        //     color: #0000ca;
+        //     ~h2{
+        //         color: #0000ca;
+        //     }  
+        // }
+    }
+    
+    #text{	
+        position:relative;
+        // color: darkblue;
+        // rotate: 30deg;
+        max-width: 35%;
+        // background-color: #ffcbff;
+        transform: rotate(-15deg) skew(-30deg);
+
+        // &:hover{
+        //     color: #0000ca;
+        //     +h2{
+        //         color: #0000ca;
+        //     }  
+        // }
+    }
+    
+    #text, #text-reflectat{
+        font-size:250%;
+        line-height:50px;
+        font-weight: bold;
+        overflow: visible;
+        transition: color 1s linear;
+        // &:hover{
+        //     h2.efect-h-gal {
+        //         color: #0000ca;
+        //     }
+        // }
+    }
+    >div:first-child{
+        &:hover{
+            #text, #text-reflectat{
+                color: #0000ca;
+            }
+        }
+        margin: 20px;
+        // background-color: pink;
+        max-width: 80%;
+    }
+
+}
+@media only screen and (max-width:1800px){.efect-css-reflexie-text{#text-reflectat{transform: rotate(195deg) skew(30deg) translate(-35rem,6rem);}}}
+@media only screen and (max-width:1000px){.efect-css-reflexie-text{#text-reflectat{transform: rotate(195deg) skew(30deg) translate(-35rem,7rem);}}}
 //   @media only screen and (max-width:1100px){
 //     #grid-galerie {
 //         grid-template-columns: repeat(2,1fr);

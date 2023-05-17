@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>TickerTinker</title>
+        
+        <meta name="keywords" content="Ticker Tinker, ceas, ceas de mână, ceas de perete, ieftin, comandă, comandă personalizată, maintanence, service, oferte, de calitate, ">
+        <meta name="description" content="Ticker Tinker - Clock shop and service. Ceasuri de toate tipurile, iefine sau de calitate. Magazin online. Service, maintanence, accesorii">
+        
+        <%- include("../fragmente/head.ejs") %>
+        
+
+    </head>
+    <body>
+        
+        <%- include("../fragmente/header.ejs") %>
+
+        <main>
+
+            <h2>Alta pagina</h2>
+
+            <section id="galeria-animata">
+                <h2>Galerie UniBuc-CGI-2023</h2>
+                <p>Parteneriatul cu Universitatea București a făcut posibilă organizarea concursului UniBuc-CGI-2023, care a produs rezultate impresionante.</p>
+                <div id="container-galerie-animata" class="galerie">
+
+                    <%  for (let imag of locals.imaginiAll) {  %>
+                        <figure>
+                            <img src="<%- imag.cale_imagine %>" alt="<%- (imag.alt)?imag.alt:imag.titlu %>" />
+                            <figcaption><%- imag.descriere %></figcaption>
+                        </figure>
+
+                    <%  }  %>
+
+                </div>
+            </section>
+
+
+            <section id="galerie-statica">
+                <h3>Imaginile momentului:</h3>
+                
+                <!-- <p>Imaginile momentului: </p> -->
+                <div id="grid-galerie">
+                    <%  for (let imag of locals.imagini) {  %>
+                        <%  d=new Date();   %>
+                        <!--  -->
+                        <%  if( (d.getHours()>Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)))    ||  
+                                (d.getHours()==Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)) && d.getMinutes()>=Number(imag.timp.substr(3,2)))   ||
+                                (d.getHours()==Number(imag.timp.substr(6,2)) && d.getHours()>Number(imag.timp.substr(0,2)) && d.getMinutes()<=Number(imag.timp.substr(9,2)))   )
+                        %><%  {   %>
+                       
+                            <figure>
+                                <picture>
+                                    <source srcset="<%- imag.cale_imagine_mediu %>" media="(max-width:1100px)" />
+                                    <img src="<%- imag.cale_imagine %>" alt="<%- (imag.alt)?imag.alt:imag.titlu %>">
+                                </picture>
+                                <figcaption><%- imag.descriere %></figcaption>
+                                <title><%- imag.titlu %></title>
+                            </figure>
+                
+                
+                            <%  }  %>
+                    <%  }  %>
+                </div>
+            </section>
+
+
+
+            <p id="watermark"></p>
+
+        </main>
+
+
+
+        <%- include("../fragmente/footer.ejs") %>
+
+
+        
+    
+    </body>
+</html>
+
+
+
+
+
+
+
+

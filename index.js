@@ -9,8 +9,10 @@ app=express();
 obGlobal = {
     obErori:null,
     obImagini:null,
+    obImaginiFiltered:null,
     folderScss: path.join(__dirname, "resurse/scss"),
-    folderCss: path.join(__dirname, "resurse/css")
+    folderCss: path.join(__dirname, "resurse/css"),
+    folderBackup: path.join(__dirname, "/backup")
 }
 
 
@@ -31,40 +33,42 @@ for(let folder of vectorFodere){
 
 
 function compileazaScss(caleScss, caleCss){
-    console.log("cale:",caleCss);
+    
     if(!caleCss){
         // let vectorCale=caleScss.split("\\")
         // let numeFisExt=vectorCale[vectorCale.length-1];
         // let numeFis=numeFisExt.split(".")[0]   /// "a.scss"  -> ["a","scss"]
-        let numeFis=path.basename(toString(caleScss),'.scss');
+        let numeFis=path.basename(caleScss,'.scss');
+        // console.log("basename:",numeFis);
         caleCss=numeFis+".css";
     }
-    
+    // console.log("cale:",caleCss);
     if (!path.isAbsolute(caleScss))
         caleScss=path.join(obGlobal.folderScss,caleScss );
     if (!path.isAbsolute(caleCss))
         caleCss=path.join(obGlobal.folderCss,caleCss );
     
-    // la acest punct avem cai absolute in caleScss si  caleCss
 
     // let vectorCale=caleCss.split("\\");
     // let numeFisCss=vectorCale[vectorCale.length-1];
     // let numex=numeFisCss.split(".")[0]+(new Date()).getTime()+".css";
-    let numeFisCss=path.basename(toString(caleCss));
-    let numex=path.basename(toString(caleCss),'.css')+(new Date()).getTime()+".css";
+    let numeFisCss=path.basename(caleCss);
+    let numex=path.basename(caleCss,'.css')+"_"+(new Date()).getTime()+".css";
     if (fs.existsSync(caleCss)){
+        // console.log("cale:",caleCss);
+        // console.log("basename:",numeFisCss);
         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numeFisCss ))// +(new Date()).getTime()
         fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numex ))
     }
     rez=sass.compile(caleScss, {"sourceMap":true});
     fs.writeFileSync(caleCss,rez.css);
-    console.log("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nCompilare SCSS\n\n",rez,"\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
+    // console.log("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\nCompilare SCSS\n\n",rez,"\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n");
 }
 // compileazaScss("a.scss");
 
 
 fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
-    console.log("\n",eveniment, numeFis,"\n");
+    // console.log("\n",eveniment, numeFis,"\n");
     if (eveniment=="change" || eveniment=="rename"){
         let caleCompleta=path.join(obGlobal.folderScss, numeFis);
         if (fs.existsSync(caleCompleta)){
@@ -102,11 +106,15 @@ app.get("/favicon.ico", function(req,res){
 })
 
 app.get(["/","/index","/home"],function(req,res){
-    res.render("pagini/index",{ip: req.ip, imagini:obGlobal.obImagini.imagini});
+    res.render("pagini/index",{ip: req.ip, imagini:obGlobal.obImaginiFiltered.imagini});
 })
 
 app.get("/despre",function(req,res){
     res.render("pagini/despre");
+})
+
+app.get("/evenimente",function(req,res){
+    res.render("pagini/evenimente",{imagini:obGlobal.obImaginiFiltered.imagini, imaginiAll:obGlobal.obImagini.imagini});
 })
 
 app.get("/ceva", function(req, res){
@@ -161,6 +169,10 @@ function Gen_Erori(){
 }
 Gen_Erori();
 
+
+
+
+
 function Gen_Imagini(){
     var continut= fs.readFileSync(__dirname+"/resurse/json/galerie.json").toString("utf-8");
 
@@ -181,11 +193,40 @@ function Gen_Imagini(){
         imag.cale_imagine_mediu=path.join("/", obGlobal.obImagini.cale_galerie, "mediu",numeFis+".webp" )
         imag.cale_imagine=path.join("/", obGlobal.obImagini.cale_galerie, imag.cale_imagine )
         //eroare.imagine="/"+obGlobal.obErori.cale_baza+"/"+eroare.imagine;
-        console.log("CALE IMAGINE:   "+imag.cale_imagine+"\n")
+        
+        
     }
-    console.log("\n"+obGlobal.obImagini.cale_galerie+"\n\n")
+    d=new Date();
+    console.log(d.getHours,"   ",d.getMinutes);
+    var timeFiltered = vImagini.filter(function(imgg){
+        
+        return (d.getHours()>Number(imgg.timp.substr(0,2)) && d.getHours()<Number(imgg.timp.substr(6,2)))    ||  
+            (d.getHours()==Number(imgg.timp.substr(0,2)) && d.getHours()<Number(imgg.timp.substr(6,2)) && d.getMinutes()>=Number(imgg.timp.substr(3,2)))   ||
+            (d.getHours()==Number(imgg.timp.substr(6,2)) && d.getHours()>Number(imgg.timp.substr(0,2)) && d.getMinutes()<=Number(imgg.timp.substr(9,2)))
+    })
+
+    for(let imgg of timeFiltered)
+        console.log("CALE IMAGINE:   "+imgg.cale_imagine+"\n");
+    console.log("img in filtru ^^\n");
+    obGlobal.obImaginiFiltered=JSON.parse(JSON.stringify(obGlobal.obImagini));
+    obGlobal.obImaginiFiltered.imagini=timeFiltered;
+
+    for(let imgg of obGlobal.obImaginiFiltered.imagini)
+        console.log("CALE IMAGINE:   "+imgg.cale_imagine+"\n");
+    console.log("img filtrate ^^\n");
+    for(let imgg of obGlobal.obImagini.imagini)
+        console.log("CALE IMAGINE:   "+imgg.cale_imagine+"\n");
+
+    console.log("\n"+obGlobal.obImagini.cale_galerie+"\n\n");
 }
 Gen_Imagini();
+
+
+
+
+
+
+
 
 
 function Afis_Eroare(res, identificator, _titlu="Titlul default", _text, _imagine){

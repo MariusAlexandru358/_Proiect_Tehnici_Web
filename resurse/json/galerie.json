@@ -1,49 +1,96 @@
 {
 	"cale_galerie":"resurse/imagini/galerie",
 	"imagini": [
-		{
-			"cale_imagine":"briose-frisca.png",
-			"titlu":"Nume imagine",
-			"descriere":"Brioșe",
-			"timp":"09:00-22:00"
-		},
-		{
-			"cale_imagine":"clatite.png",
-			"titlu":"Clatite titlu",
-			"descriere":"Clatite descriere",
-			"timp":"09:00-22:00"
-			
-		},
-		{
-			"cale_imagine":"gogosi.png",
-			"titlu":"Nume imagine",
-			"descriere":"Gogoși glazurate",
-			"timp":"09:00-22:00"
-		},
-		{
-			"cale_imagine":"tort-scortisoara.png",
-			"titlu":"tort-scortisoara titlu",
-			"descriere":"tort-scortisoara descriere",
-			"timp":"09:00-22:00"
-		},
-		{
-			"cale_imagine":"prajitura-ciocolata.png",
-			"titlu":"Nume imagine",
-			"descriere":"Prăjitură cu ciocolată",
-			"timp":"00:00-22:00"
-		},
-		{
-			"cale_imagine":"tarta-afine.png",
-			"titlu":"Nume imagine",
-			"descriere":"Tartă cu afine",
-			"timp":"00:00-22:00"
-		},
 		
 		{
-			"cale_imagine":"tort-trandafiri.png",
-			"titlu":"Nume imagine",
-			"descriere":"Tort special",
+			"cale_imagine":"rsz_background_01.jpg",
+			"titlu":"Tupeu de oțel",
+			"descriere":"Tupeu de oțel",
+			"timp":"00:00-11:00"
+		},
+		{
+			"cale_imagine":"rsz_background_02.jpg",
+			"titlu":"Macaroons",
+			"descriere":"Macaroons",
+			"timp":"08:35-17:00"
+		},
+		{
+			"cale_imagine":"rsz_background_04.jpg",
+			"titlu":"Rust",
+			"descriere":"Rust",
+			"timp":"00:00-23:59"
+		},
+		{
+			"cale_imagine":"rsz_background_05.jpg",
+			"titlu":"Shattering eye",
+			"descriere":"Shattering eye",
+			"timp":"00:00-23:59"
+		},
+		{
+			"cale_imagine":"rsz_background_06.jpg",
+			"titlu":"Nostalgie",
+			"descriere":"Nostalgie",
+			"timp":"00:00-23:00"
+		},
+		{
+			"cale_imagine":"rsz_background_07.jpg",
+			"titlu":"Burst of colour",
+			"descriere":"Burst of colour",
+			"timp":"06:20-20:00"
+		},
+		{
+			"cale_imagine":"rsz_background_08.jpg",
+			"titlu":"Energy flow",
+			"descriere":"Energy flow",
+			"timp":"00:00-23:59"
+		},
+		{
+			"cale_imagine":"rsz_background_10.jpg",
+			"titlu":"Perpectivă alb-negru",
+			"descriere":"Perpectiva alb-negru",
+			"timp":"00:00-10:00"
+		},
+		{
+			"cale_imagine":"rsz_background_14.jpg",
+			"titlu":"Trecător",
+			"descriere":"Trecător",
+			"timp":"00:00-23:00"
+		},
+		{
+			"cale_imagine":"rsz_background_16.jpg",
+			"titlu":"Inevitabil",
+			"descriere":"Inevitabil",
 			"timp":"00:00-22:00"
+		},
+		{
+			"cale_imagine":"rsz_background_19_dark_blue.jpg",
+			"titlu":"Epicentru",
+			"descriere":"Epicentru",
+			"timp":"11:00-13:00"
+		},
+		{
+			"cale_imagine":"rsz_background_fantasy-beauty.jpg",
+			"titlu":"Beauty",
+			"descriere":"Beauty",
+			"timp":"00:40-23:59"
+		},
+		{
+			"cale_imagine":"rsz_background_shrooms.jpg",
+			"titlu":"High on shrooms",
+			"descriere":"High on shrooms",
+			"timp":"22:00-23:32"
+		},
+		{
+			"cale_imagine":"rsz_background_time-and-music.jpg",
+			"titlu":"Rapsodie tristă",
+			"descriere":"Rapsodie tristă",
+			"timp":"19:00-23:59"
+		},
+		{
+			"cale_imagine":"rsz_background_time-and-music_2.jpg",
+			"titlu":"Rapsodie veselă",
+			"descriere":"Rapsodie veselă",
+			"timp":"00:00-21:00"
 		}
 		
 
