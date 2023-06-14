@@ -3,6 +3,25 @@ const fs=require('fs');
 const path=require('path');
 const sharp=require('sharp');
 const sass=require('sass');
+const ejs=require('ejs');
+const {Client}=require('pg');
+
+
+var client= new Client({database:"_tickertinker",
+        user:"alexandru__marius_cristian",
+        password:"123456",
+        host:"localhost",
+        port:5432});
+client.connect();
+
+// client.query("select * from test", function(err, rez){
+//     console.log("Eroare BD",err);
+//     console.log("Rezultat BD",rez);
+// });
+// client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rez){
+//     console.log(err);
+//     console.log(rez);
+// })
 
 app=express();
 
@@ -12,8 +31,46 @@ obGlobal = {
     obImaginiFiltered:null,
     folderScss: path.join(__dirname, "resurse/scss"),
     folderCss: path.join(__dirname, "resurse/css"),
-    folderBackup: path.join(__dirname, "/backup")
+    folderBackup: path.join(__dirname, "/backup"),
+    optiuniMeniu:[],
+    atributeProdus: {material: null}
 }
+
+
+
+client.query("select * from unnest(enum_range(null::categorie_produs))",function(err, rezTipuri){
+    // console.log(err);
+    // console.log(rez);
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log("\nrezTipuri");
+        console.log(rezTipuri);
+        console.log("\n\n")
+        obGlobal.optiuniMeniu=rezTipuri.rows;
+
+    }
+    // app.locals.optiuniMeniu=obGlobal.optiuniMeniu;
+})
+
+client.query("select distinct material from ceasuri",function(err, rezMaterial){
+    // console.log(err);
+    // console.log(rez);
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log("\nrezMaterial");
+        console.log(rezMaterial);
+        console.log("\n\n")
+        obGlobal.atributeProdus.material=rezMaterial.rows;
+
+    }
+    // app.locals.optiuniMeniu=obGlobal.optiuniMeniu;
+})
+
+
 
 
 console.log("Folder proiect", __dirname);
@@ -54,11 +111,17 @@ function compileazaScss(caleScss, caleCss){
     // let numex=numeFisCss.split(".")[0]+(new Date()).getTime()+".css";
     let numeFisCss=path.basename(caleCss);
     let numex=path.basename(caleCss,'.css')+"_"+(new Date()).getTime()+".css";
+
+    let caleResBackup=path.join(obGlobal.folderBackup,"resurse/css");
+    if(!fs.existsSync(caleResBackup)){
+        fs.mkdirSync(caleResBackup,{recursive:true});
+    }
+
     if (fs.existsSync(caleCss)){
         // console.log("cale:",caleCss);
         // console.log("basename:",numeFisCss);
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numeFisCss ))// +(new Date()).getTime()
-        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,numex ))
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numeFisCss ))// +(new Date()).getTime()
+        fs.copyFileSync(caleCss, path.join(obGlobal.folderBackup,"resurse/css",numex ))
     }
     rez=sass.compile(caleScss, {"sourceMap":true});
     fs.writeFileSync(caleCss,rez.css);
@@ -95,6 +158,14 @@ app.set("view engine","ejs");
 app.use("/resurse", express.static(__dirname+"/resurse"));
 app.use("/node_modules", express.static(__dirname+"/node_modules"));
 
+app.use("/*",function(req,res,next){
+    res.locals.optiuniMeniu = obGlobal.optiuniMeniu;
+    res.locals.materialProdus = obGlobal.atributeProdus.material;
+    // console.log("\n\n\n MATERIAL \n\n");
+    // console.log(res.locals.materialProdus);
+    next();
+});
+
 app.use(/^\/resurse(\/[a-zA-Z0-9]*(?!\.)[a-zA-Z0-9]*)*$/, function(req,res){
     Afis_Eroare(res,403);
 
@@ -121,6 +192,106 @@ app.get("/ceva", function(req, res){
     //console.log("cale:",req.url)
     res.send("<h1>altceva</h1> ip:"+req.ip);
 })
+
+
+
+
+
+
+
+
+
+
+
+// app.get("/produse",function(req, res){
+//     //TO DO query pentru a selecta toate produsele
+//     //TO DO se adauaga filtrarea dupa tipul produsului
+//     //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+//     client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rezCategorie){
+//         console.log(req.query);
+//         let wherecond="";
+//         if(req.query.tip)
+//             wherecond = ` where tip_produs='${req.query.tip}'`
+//         client.query("select * from prajituri"+wherecond , function( err, rez){
+//             console.log(300)
+//             if(err){
+//                 console.log(err);
+//                 Afis_Eroare(res, 2);
+//             }
+//             else{
+//                 console.log(rez);
+//                 res.render("pagini/produse", {produse:rez.rows, optiuni:rezCategorie.rows});
+//             }  
+//         });
+//     }) 
+// });
+
+
+
+app.get("/produse",function(req, res){
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    client.query("select * from unnest(enum_range(null::tag_special))",function(err, rezCategorie){
+        console.log(req.query);
+        let wherecond="";
+        if(req.query.tip)
+            wherecond = ` where categ_prod='${req.query.tip}'`
+        client.query("select * from ceasuri"+wherecond , function( err, rez){
+            console.log(300)
+            if(err){
+                console.log(err);
+                console.log(" EROARE");
+                Afis_Eroare(res, 2);
+            }
+            else{
+                // console.log(rez);
+                
+                rez.rows.forEach(function (element) {
+                    const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                    const months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                    let zi = days[element.data_adaugare.getDay()]
+                            + ", " + element.data_adaugare.getDate() 
+                            + "-" + months[element.data_adaugare.getMonth()]
+                            + "-" + element.data_adaugare.getFullYear();
+                element.data_adaugare=zi;
+
+                }, this);
+
+                res.render("pagini/produse", {produse:rez.rows, optiuni:rezCategorie.rows});
+            }  
+        });
+    }) 
+});
+
+
+
+
+
+app.get("/produs/:id",function(req, res){
+    console.log(req.params);
+   
+    client.query(`select * from prajituri where id=${req.params.id}`, function( err, rezultat){
+        if(err){
+            console.log(err);
+            Afis_Eroare(res, 2);
+        }
+        else
+            res.render("pagini/produs", {prod:rezultat.rows[0]});
+    });
+});
+
+client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rez){
+    console.log(err);
+    console.log(rez);
+})
+
+
+
+
+
+
+
 
 app.get("/*.ejs",function(req, res){
     Afis_Eroare(res,400);

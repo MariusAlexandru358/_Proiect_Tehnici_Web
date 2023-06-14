@@ -1958,22 +1958,22 @@ progress {
 }
 
 .col-form-label {
-  padding-top: calc(0.375rem + 3px);
-  padding-bottom: calc(0.375rem + 3px);
+  padding-top: calc(0.375rem + 1.5px);
+  padding-bottom: calc(0.375rem + 1.5px);
   margin-bottom: 0;
   font-size: inherit;
   line-height: 1.5;
 }
 
 .col-form-label-lg {
-  padding-top: calc(0.5rem + 3px);
-  padding-bottom: calc(0.5rem + 3px);
+  padding-top: calc(0.5rem + 1.5px);
+  padding-bottom: calc(0.5rem + 1.5px);
   font-size: 1.25rem;
 }
 
 .col-form-label-sm {
-  padding-top: calc(0.25rem + 3px);
-  padding-bottom: calc(0.25rem + 3px);
+  padding-top: calc(0.25rem + 1.5px);
+  padding-bottom: calc(0.25rem + 1.5px);
   font-size: 0.875rem;
 }
 
@@ -1993,7 +1993,7 @@ progress {
   color: #212529;
   background-color: #dddddd;
   background-clip: padding-box;
-  border: 3px solid #ced4da;
+  border: 1.5px solid #ced4da;
   appearance: none;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2037,7 +2037,7 @@ progress {
   border-color: inherit;
   border-style: solid;
   border-width: 0;
-  border-inline-end-width: 3px;
+  border-inline-end-width: 1.5px;
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -2059,7 +2059,7 @@ progress {
   color: #212529;
   background-color: transparent;
   border: solid transparent;
-  border-width: 3px 0;
+  border-width: 1.5px 0;
 }
 .form-control-plaintext:focus {
   outline: 0;
@@ -2070,7 +2070,7 @@ progress {
 }
 
 .form-control-sm {
-  min-height: calc(1.5em + 0.5rem + 6px);
+  min-height: calc(1.5em + 0.5rem + 3px);
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.25rem;
@@ -2082,7 +2082,7 @@ progress {
 }
 
 .form-control-lg {
-  min-height: calc(1.5em + 1rem + 6px);
+  min-height: calc(1.5em + 1rem + 3px);
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   border-radius: 0.5rem;
@@ -2094,18 +2094,18 @@ progress {
 }
 
 textarea.form-control {
-  min-height: calc(1.5em + 0.75rem + 6px);
+  min-height: calc(1.5em + 0.75rem + 3px);
 }
 textarea.form-control-sm {
-  min-height: calc(1.5em + 0.5rem + 6px);
+  min-height: calc(1.5em + 0.5rem + 3px);
 }
 textarea.form-control-lg {
-  min-height: calc(1.5em + 1rem + 6px);
+  min-height: calc(1.5em + 1rem + 3px);
 }
 
 .form-control-color {
   width: 3rem;
-  height: calc(1.5em + 0.75rem + 6px);
+  height: calc(1.5em + 0.75rem + 3px);
   padding: 0.375rem;
 }
 .form-control-color:not(:disabled):not([readonly]) {
@@ -2119,10 +2119,10 @@ textarea.form-control-lg {
   border-radius: 0.375rem;
 }
 .form-control-color.form-control-sm {
-  height: calc(1.5em + 0.5rem + 6px);
+  height: calc(1.5em + 0.5rem + 3px);
 }
 .form-control-color.form-control-lg {
-  height: calc(1.5em + 1rem + 6px);
+  height: calc(1.5em + 1rem + 3px);
 }
 
 .form-select {
@@ -2139,7 +2139,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
-  border: 3px solid #ced4da;
+  border: 1.5px solid #ced4da;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   appearance: none;
@@ -2392,7 +2392,7 @@ textarea.form-control-lg {
 .form-floating > .form-control,
 .form-floating > .form-control-plaintext,
 .form-floating > .form-select {
-  height: calc(3.5rem + 6px);
+  height: calc(3.5rem + 3px);
   line-height: 1.25;
 }
 .form-floating > label {
@@ -2407,7 +2407,7 @@ textarea.form-control-lg {
   text-overflow: ellipsis;
   white-space: nowrap;
   pointer-events: none;
-  border: 3px solid transparent;
+  border: 1.5px solid transparent;
   transform-origin: 0 0;
   transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
 }
@@ -2451,7 +2451,7 @@ textarea.form-control-lg {
   transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
 }
 .form-floating > .form-control-plaintext ~ label {
-  border-width: 3px 0;
+  border-width: 1.5px 0;
 }
 
 .input-group {
@@ -2493,7 +2493,7 @@ textarea.form-control-lg {
   text-align: center;
   white-space: nowrap;
   background-color: #e9ecef;
-  border: 3px solid #ced4da;
+  border: 1.5px solid #ced4da;
   border-radius: 0.375rem;
 }
 
@@ -2535,7 +2535,7 @@ textarea.form-control-lg {
   border-bottom-right-radius: 0;
 }
 .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-  margin-left: -3px;
+  margin-left: -1.5px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -2734,7 +2734,7 @@ textarea.form-control-lg {
   --bs-btn-line-height: 1.5;
   --bs-btn-color: #212529;
   --bs-btn-bg: transparent;
-  --bs-btn-border-width: 3px;
+  --bs-btn-border-width: 1.5px;
   --bs-btn-border-color: transparent;
   --bs-btn-border-radius: 0.375rem;
   --bs-btn-hover-border-color: transparent;
@@ -3502,7 +3502,7 @@ textarea.form-control-lg {
 }
 .btn-group > :not(.btn-check:first-child) + .btn,
 .btn-group > .btn-group:not(:first-child) {
-  margin-left: -3px;
+  margin-left: -1.5px;
 }
 .btn-group > .btn:not(:last-child):not(.dropdown-toggle),
 .btn-group > .btn.dropdown-toggle-split:first-child,
@@ -3549,7 +3549,7 @@ textarea.form-control-lg {
 }
 .btn-group-vertical > .btn:not(:first-child),
 .btn-group-vertical > .btn-group:not(:first-child) {
-  margin-top: -3px;
+  margin-top: -1.5px;
 }
 .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle),
 .btn-group-vertical > .btn-group:not(:last-child) > .btn {

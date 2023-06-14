@@ -10,11 +10,23 @@ body {
   --culoare-border-buton:black;
 }
 
+body.dark {
+  --culoare-meniu: #1400c5;
+  --culoare-meniu2: rgb(54, 0, 107);
+  --culoare-border-buton:black;
+}
+
+body.focus {
+  --culoare-meniu: rgb(43, 0, 177);
+  --culoare-meniu2: rgb(75, 26, 110);
+  --culoare-border-buton:black;
+}
+
 nav {
   --text-meniu: var(--colour-yellow);
   background-color: var(--culoare-meniu);
   /*width:100%;*/
-  width: calc(100vw - 18px);
+  width: 100vw;
   height: var(--inaltime-meniu);
   position: sticky;
   top: 0;

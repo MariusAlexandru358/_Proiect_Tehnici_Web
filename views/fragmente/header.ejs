@@ -1,5 +1,24 @@
+
+
+
 <header class="c1" id="h1" >
     <h1>Ticker Tinker</h1>
+    <div> Tema: 
+        <label> &nbsp; &nbsp;  Light 
+            <input id="tema1"  name="gr_tema" value="light" type="radio" onclick="SetTheme()" checked="checked"/>
+        </label>
+        
+        <label> &nbsp; &nbsp;  Dark
+            <input id="tema2"  name="gr_tema" value="dark" type="radio" onclick="SetTheme()" />
+        </label>
+
+        <label> &nbsp; &nbsp;  Focus
+            <input id="tema3"  name="gr_tema" value="focus" type="radio" onclick="SetTheme()" />
+        </label>
+        
+    </div>
+
+    <script src="resurse/js/tema.js"></script>
     <!--meniu-->
     <nav>
     
@@ -34,10 +53,14 @@
             </li>
             <li><div>Produse</div>
                 <ul>
-                    <li><a href="#">Toate</a></li>
-                    <li><a href="#">Ceasuri de perete</a></li>
-                    <li><a href="#">Ceasuri de mână</a></li>
-                    <li><a href="#">Ceasuri desteptatoare</a></li>
+                    <li><a href="/produse">Toate</a></li>
+                    <% for (let opt of locals.optiuniMeniu) { %>
+                        <li><a href="/produse?tip=<%- opt.unnest %>"><%- opt.unnest %></a></li>
+                        <!-- <option value="<%- opt.unnest %>"><%- opt.unnest %> </option> -->
+                    <% } %>
+                    <!-- <li><a href="/produse?tip=ceas_de_perete">Ceasuri de perete</a></li>
+                    <li><a href="/produse?tip=ceas_de_mana">Ceasuri de mână</a></li>
+                    <li><a href="/produse?tip=ceas_desteptator">Ceasuri desteptatoare</a></li> -->
                 </ul>
             
             </li>
@@ -48,5 +71,7 @@
             <li><div><a href="#contact">Contact</a></div></li>
         </ul>
     </nav>
+
+    
     
 </header>

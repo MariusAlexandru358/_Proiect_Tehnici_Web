@@ -14,10 +14,12 @@ body{
     --colour-blue:#0050F0;
     --colour-orange:#f06818;
     --colour-purple:#5b0cf0;
-    --colour-yellow:#f0e418;
+    --colour-yellow:#fff990;
     --colour-lightblue:#e0ffff;
     --colour-green:#008000;
     --colour-white-background: #dddddd;
+
+    --cl-marcare:var(--colour-yellow);
 
     --colour-light-purple :#a9a9e9;
 
@@ -28,12 +30,19 @@ body{
     --culoare-fundal-header: #708EA1;
     --culoare-fundal-footer: #BEDBED;
     --culoare-text:black;
+
     --culoare-highlight-primary:var(--colour-orange);
     --culoare-highlight-secondary:var(--colour-yellow);
-    --culoare-highlight-dark:var(--colour-light-purple);
+    --culoare-highlight-dark: #6664e7;
 
-    --culoare-fundal-night:var(--colour-blue);
-    --culoare-text-night:var(--colour-yellow);
+    
+    --culoare-fundal-focus: #40008a;
+    --culoare-text-focus: #fff999;
+    --culoare-highlight-focus: #7d66e4;
+
+    // --culoare-fundal-night:var(--colour-blue);#3a0022
+    --culoare-fundal-night: #1e0055;
+    --culoare-text-night:var(--colour-white-background);
     --spatiere-pagina:50px;
     --padding-sectiune:15px;
     --padding-intern:10px;
@@ -42,6 +51,22 @@ body{
 body.dark{
     --culoare-fundal:var(--culoare-fundal-night);
     --culoare-text:var(--culoare-text-night);
+    --cl-marcare: var(--culoare-highlight-dark);
+
+    --culoare-highlight-primary:var(--culoare-highlight-dark);
+    --culoare-highlight-secondary:var(--culoare-mov);
+
+}
+
+body.focus{
+    --culoare-fundal:var(--culoare-fundal-focus);
+    --culoare-text:var(--culoare-text-focus);
+    --cl-marcare: var(--culoare-highlight-focus);
+
+    --culoare-highlight-primary:var(--colour-orange);
+    --culoare-highlight-secondary:var(--colour-yellow);
+
+
 }
 
 
@@ -141,6 +166,10 @@ h2{
     }
 }
 
+
+
+
+
 #tabel-orar{
     caption-side: bottom;
     border-collapse: collapse;
@@ -158,25 +187,7 @@ h2{
     }
 
     tbody tr{
-        td {
-            transition: background-color .5s linear;
-            &:nth-child(even) {
-                background-color: #eee;
-                transition: background-color .5s linear;
-                &:hover {
-                    background-color: var(--culoare-highlight-primary);
-                }
-            }
-            &:nth-child(odd) {
-                transition: background-color .5s linear;
-                &:hover {
-                    background-color: var(--culoare-highlight-primary);
-                }
-            }
-            &:hover {
-                background-color: var(--culoare-highlight-primary);
-            }
-        }
+        
 
 
         &.rs td:nth-child(odd) {
@@ -200,12 +211,45 @@ h2{
                 background-color: var(--culoare-highlight-secondary);
             }
         }
+
+
+
+
+
+        td {
+            transition: background-color .5s linear;
+            &:nth-child(even) {
+                background-color: #eee;
+                // background-color: #39D1B4;
+                transition: background-color .5s linear;
+                &:hover {
+                    background-color: var(--culoare-highlight-primary);
+                }
+            }
+            &:nth-child(odd) {
+                transition: background-color .5s linear;
+                &:hover {
+                    background-color: var(--culoare-highlight-primary);
+                }
+            }
+            &:hover {
+                background-color: var(--culoare-highlight-primary);
+            }
+        }
     }
 
     thead tr{
         background: var(--culoare-highlight-dark);
     }
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -333,6 +377,13 @@ h2{
 
 
 /* MERGE ^^^ */
+
+
+
+
+
+
+
 
 
 

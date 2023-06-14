@@ -3,7 +3,7 @@ nav, #link-top-p, iframe, .taburi-iframe, figure{
     display:none;
 }
 
-#banner-print, #grid-pagina{
+#banner, #grid-pagina{
     display: block;
     background-color: white;
 }
@@ -57,7 +57,7 @@ footer{
     // transform: rotate(-45deg);
 }
 
-#banner-print{
+#banner{
     border: dotted black;
     position: absolute;
     top:0;
