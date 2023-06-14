@@ -23,6 +23,7 @@ body {
   --culoare-fundal-header: #708EA1;
   --culoare-fundal-footer: #BEDBED;
   --culoare-text:black;
+  --culoare-bg-table: #eee;
   --culoare-highlight-primary:var(--colour-orange);
   --culoare-highlight-secondary:var(--colour-yellow);
   --culoare-highlight-dark: #6664e7;
@@ -42,14 +43,16 @@ body.dark {
   --cl-marcare: var(--culoare-highlight-dark);
   --culoare-highlight-primary:var(--culoare-highlight-dark);
   --culoare-highlight-secondary:var(--culoare-mov);
+  --culoare-bg-tabel: #370692;
 }
 
 body.focus {
   --culoare-fundal:var(--culoare-fundal-focus);
   --culoare-text:var(--culoare-text-focus);
   --cl-marcare: var(--culoare-highlight-focus);
-  --culoare-highlight-primary:var(--colour-orange);
-  --culoare-highlight-secondary:var(--colour-yellow);
+  --culoare-highlight-primary:var(--culoare-highlight-dark);
+  --culoare-highlight-secondary:var(--culoare-mov);
+  --culoare-bg-tabel: #5307aa;
 }
 
 header h1 {
@@ -152,7 +155,7 @@ h2 {
   transition: background-color 0.5s linear;
 }
 #tabel-orar tbody tr.rs td:nth-child(odd) {
-  background-color: #eee;
+  background-color: var(--culoare-bg-tabel);
   transition: background-color 0.5s linear;
 }
 #tabel-orar tbody tr.rs td:nth-child(odd) :hover {
@@ -175,7 +178,7 @@ h2 {
   transition: background-color 0.5s linear;
 }
 #tabel-orar tbody tr td:nth-child(even) {
-  background-color: #eee;
+  background-color: var(--culoare-bg-tabel);
   transition: background-color 0.5s linear;
 }
 #tabel-orar tbody tr td:nth-child(even):hover {

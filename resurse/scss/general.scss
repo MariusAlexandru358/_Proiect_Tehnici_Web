@@ -30,6 +30,7 @@ body{
     --culoare-fundal-header: #708EA1;
     --culoare-fundal-footer: #BEDBED;
     --culoare-text:black;
+    --culoare-bg-table: #eee;
 
     --culoare-highlight-primary:var(--colour-orange);
     --culoare-highlight-secondary:var(--colour-yellow);
@@ -55,7 +56,7 @@ body.dark{
 
     --culoare-highlight-primary:var(--culoare-highlight-dark);
     --culoare-highlight-secondary:var(--culoare-mov);
-
+    --culoare-bg-tabel: #370692;
 }
 
 body.focus{
@@ -63,10 +64,9 @@ body.focus{
     --culoare-text:var(--culoare-text-focus);
     --cl-marcare: var(--culoare-highlight-focus);
 
-    --culoare-highlight-primary:var(--colour-orange);
-    --culoare-highlight-secondary:var(--colour-yellow);
-
-
+    --culoare-highlight-primary:var(--culoare-highlight-dark);
+    --culoare-highlight-secondary:var(--culoare-mov);
+    --culoare-bg-tabel: #5307aa;
 }
 
 
@@ -191,7 +191,7 @@ h2{
 
 
         &.rs td:nth-child(odd) {
-            background-color: #eee;
+            background-color: var(--culoare-bg-tabel);
             transition: background-color .5s linear;
             :hover {
                 background-color: var(--culoare-highlight-primary);
@@ -214,12 +214,12 @@ h2{
 
 
 
-
+        
 
         td {
             transition: background-color .5s linear;
             &:nth-child(even) {
-                background-color: #eee;
+                background-color: var(--culoare-bg-tabel);
                 // background-color: #39D1B4;
                 transition: background-color .5s linear;
                 &:hover {

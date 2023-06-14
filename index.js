@@ -271,20 +271,32 @@ app.get("/produse",function(req, res){
 app.get("/produs/:id",function(req, res){
     console.log(req.params);
    
-    client.query(`select * from prajituri where id=${req.params.id}`, function( err, rezultat){
+    client.query(`select * from ceasuri where id=${req.params.id}`, function( err, rezultat){
         if(err){
             console.log(err);
             Afis_Eroare(res, 2);
         }
-        else
+        else{
+            rezultat.rows.forEach(function (element) {
+                const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                const months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                let zi = days[element.data_adaugare.getDay()]
+                        + ", " + element.data_adaugare.getDate() 
+                        + "-" + months[element.data_adaugare.getMonth()]
+                        + "-" + element.data_adaugare.getFullYear();
+            element.data_adaugare=zi;
+
+            }, this);
+
             res.render("pagini/produs", {prod:rezultat.rows[0]});
+        }
     });
 });
 
-client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rez){
-    console.log(err);
-    console.log(rez);
-})
+// client.query("select * from unnest(enum_range(null::categ_prajitura))",function(err, rez){
+//     console.log(err);
+//     console.log(rez);
+// })
 
 
 

@@ -13,7 +13,9 @@ function SetTheme() {
             break;
         }
     }
-
+    if(!val_tema){
+        val_tema="light";
+    }
     if(val_tema=="light"){
         document.body.classList.add("light");
         document.body.classList.remove("dark");
