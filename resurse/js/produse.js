@@ -7,7 +7,15 @@ window.addEventListener("load",function() {
 
 
     document.getElementById("filtrare").onclick= function(){
+        let avemproduse=0;
+
         let val_nume=document.getElementById("inp-nume").value.toLowerCase();
+        val_nume=val_nume.replace(/ă/g, "a");
+        val_nume=val_nume.replace(/î/g, "i");
+        val_nume=val_nume.replace(/â/g, "a");
+        val_nume=val_nume.replace(/ș/g, "s");
+        val_nume=val_nume.replace(/ț/g, "t");
+
 
         let radiobuttons=document.getElementsByName("gr_rad");
         let val_tag;
@@ -52,7 +60,7 @@ window.addEventListener("load",function() {
 
 
 
-        let val_descriere = document.getElementById("inp-descriere").value;
+        let val_descriere = document.getElementById("inp-descriere").value.toLowerCase();
         let keywords;
         let c4;
         if(val_descriere){
@@ -62,6 +70,13 @@ window.addEventListener("load",function() {
         else{
             c4=false;
         }
+        if(keywords){ for(let kw of keywords){
+            kw=kw.replace(/ă/g, "a");
+            kw=kw.replace(/î/g, "i");
+            kw=kw.replace(/â/g, "a");
+            kw=kw.replace(/ș/g, "s");
+            kw=kw.replace(/ț/g, "t");
+        }}
 
         let val_garantie;
         let checkbox = document.getElementById("inp-garantie");
@@ -71,7 +86,12 @@ window.addEventListener("load",function() {
 
         let val_material=document.getElementById("inp-material").value;
 
-        let val_culoare=document.getElementById("inp-culoare").value;
+        let val_culoare=document.getElementById("inp-culoare").value.toLowerCase();
+        val_culoare=val_culoare.replace(/ă/g, "a");
+        val_culoare=val_culoare.replace(/î/g, "i");
+        val_culoare=val_culoare.replace(/â/g, "a");
+        val_culoare=val_culoare.replace(/ș/g, "s");
+        val_culoare=val_culoare.replace(/ț/g, "t");
 
         let val_dimensiune=document.getElementById("inp-dimensiune").value;
 
@@ -83,7 +103,7 @@ window.addEventListener("load",function() {
         for (let prod of produse){
             prod.style.display="none";
             let nume=prod.getElementsByClassName("val-nume")[0].innerHTML.toLowerCase();
-            let cond1= (nume.startsWith(val_nume));
+            let cond1= (nume.includes(val_nume));
 
             // let baterie=prod.getElementsByClassName("val-baterie")[0].innerHTML;
             // // console.log(baterie); console.log(" BATERIE")
@@ -101,7 +121,7 @@ window.addEventListener("load",function() {
             }
             let cond3= (val_pret=="oricare" || (oklu));
 
-            let descriere=prod.getElementsByClassName("val-descriere")[0].innerHTML;
+            let descriere=prod.getElementsByClassName("val-descriere")[0].innerHTML.toLowerCase();
             let okp=0;  let okn=1;
             if(c4){
                 for(kw of keywords){
@@ -127,7 +147,7 @@ window.addEventListener("load",function() {
             let cond6= (val_material=="oricare" || val_material==material);
 
 
-            let culori_posibile=prod.getElementsByClassName("val-culori")[0].innerHTML;
+            let culori_posibile=prod.getElementsByClassName("val-culori")[0].innerHTML.toLowerCase();
             let okcul=false;
             if(val_culoare=="oricare"){
                 okcul=true;
@@ -149,7 +169,15 @@ window.addEventListener("load",function() {
 
             if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
                 prod.style.display="grid";
+                avemproduse++;
             }
+        }
+
+        if(!avemproduse){
+            let myp = document.createElement("p");
+            myp.innerHTML="Niciun produs din stocul disponibil la acest moment nu corespunde filtrelor aplicate."
+            myp.id="zeroproduse";
+            document.getElementById("produse").appendChild(myp);
         }
     }
 
@@ -157,7 +185,11 @@ window.addEventListener("load",function() {
 
 
     document.getElementById("resetare").onclick= function(){
-            
+        
+        myp=document.getElementById("zeroproduse");
+        if(myp){
+            myp.remove();
+        }
 
         document.getElementById("inp-nume").value="";
         document.getElementById("i_rad6").checked=true;
@@ -170,14 +202,14 @@ window.addEventListener("load",function() {
         for (var i=0, iLen=options.length; i<iLen; i++) {
             if (options[i].defaultSelected) {
                 document.getElementById("inp-pret").selectedIndex = i;
-                return;
+                break;
             }
         }   
         options = document.getElementById("inp-material").options;
         for (var i=0, iLen=options.length; i<iLen; i++) {
             if (options[i].defaultSelected) {
                 document.getElementById("inp-material").selectedIndex = i;
-                return;
+                break;
             }
         } 
         document.getElementById("inp-culoare").value="";

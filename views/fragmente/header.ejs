@@ -3,7 +3,7 @@
 
 <header class="c1" id="h1" >
     <h1>Ticker Tinker</h1>
-    <div> Tema: 
+    <div class="mytheme"> Tema: 
         <label> &nbsp; &nbsp;  Light 
             <input id="tema1"  name="gr_tema" value="light" type="radio" onclick="SetTheme()" />
         </label>
@@ -18,12 +18,12 @@
         
     </div>
 
-    <script src="resurse/js/tema.js"></script>
+    <script src="/resurse/js/tema.js"></script>
     <!--meniu-->
     <nav>
     
         <label id="hamburger" for="ch-menu">
-            <img src="resurse/imagini/Hamburger_icon_alb.png" alt="menu">
+            <img src="/resurse/imagini/Hamburger_icon_alb.png" alt="menu">
         </label>
         <input id="ch-menu" type="checkbox">
         <ul class="meniu">
@@ -51,9 +51,9 @@
                     <li><a href="/despre#motivatie">Motivație</a></li>
                 </ul>
             </li>
-            <li><div>Produse</div>
+            <li><div><a href="/produse">Produse</a></div>
                 <ul>
-                    <li><a href="/produse">Toate</a></li>
+                    <!-- <li><a href="/produse">Toate</a></li> -->
                     <% for (let opt of locals.optiuniMeniu) { %>
                         <li><a href="/produse?tip=<%- opt.unnest %>"><%- opt.unnest %></a></li>
                         <!-- <option value="<%- opt.unnest %>"><%- opt.unnest %> </option> -->

@@ -1,5 +1,5 @@
 
-nav, #link-top-p, iframe, .taburi-iframe, figure{
+nav, #link-top-p, iframe, .taburi-iframe, figure, #galerie-statica{
     display:none;
 }
 
@@ -57,6 +57,10 @@ footer{
     // transform: rotate(-45deg);
 }
 
+.mycookies, .mytheme{
+    display: none;
+}
+
 #banner{
     border: dotted black;
     position: absolute;
@@ -65,11 +69,17 @@ footer{
 
 }
 
-@page :left{
+
+@page {
+    size: A4 portrait;
+    counter-increment: page;
+}
+
+@page:left{
     margin-left: 2.5cm;
     margin-right: 0.5cm;
 }
-@page :right{
+@page:right{
     margin-left: 0.5cm;
     margin-right: 2.5cm;
 }

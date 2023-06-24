@@ -6,7 +6,7 @@ main {
 
 body {
   --culoare-hd-produs: #dbbfbf;
-  --culoare-bg-infoprodus: var(--roz-deschis);
+  --culoare-bg-infoprodus: var(--culoare-highlight-secondary);
   --hd-text: inherit;
   --hd-hover: var(--colour-purple);
 }
@@ -124,4 +124,10 @@ body.focus {
 .selecteaza-cos:hover {
   background-color: var(--cl-marcare);
   border: 1px solid var(--colour-lightblue);
+}
+
+@media only screen and (max-width: 800px) {
+  .text-butoane {
+    display: none;
+  }
 }

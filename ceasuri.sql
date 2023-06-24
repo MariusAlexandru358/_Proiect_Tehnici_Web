@@ -70,3 +70,5 @@ where id=11;
 
 select * from ceasuri
 order by id asc;
+
+select distinct material from ceasuri;

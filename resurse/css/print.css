@@ -1,4 +1,4 @@
-nav, #link-top-p, iframe, .taburi-iframe, figure {
+nav, #link-top-p, iframe, .taburi-iframe, figure, #galerie-statica {
   display: none;
 }
 
@@ -43,6 +43,10 @@ footer {
   content: "Alexandru Marius-Crisitan";
 }
 
+.mycookies, .mytheme {
+  display: none;
+}
+
 #banner {
   border: dotted black;
   position: absolute;
@@ -50,6 +54,10 @@ footer {
   margin: 0 250px;
 }
 
+@page {
+  size: A4 portrait;
+  counter-increment: page;
+}
 @page :left {
   margin-left: 2.5cm;
   margin-right: 0.5cm;
