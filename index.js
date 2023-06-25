@@ -5,6 +5,8 @@ const sharp=require('sharp');
 const sass=require('sass');
 const ejs=require('ejs');
 const {Client}=require('pg');
+// const formidable = require('formidable');
+import formidable from 'formidable';
 
 
 var client= new Client({database:"_tickertinker",
@@ -298,6 +300,218 @@ app.get("/produs/:id",function(req, res){
 //     console.log(rez);
 // })
 
+
+
+app.get("/produseServer",function(req, res){
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    client.query("select * from unnest(enum_range(null::tag_special))",function(err, rezCategorie){
+        console.log(req.query);
+        let wherecond="";
+        if(req.query.tip)
+            wherecond = ` where categ_prod='${req.query.tip}'`
+        client.query("select * from ceasuri"+wherecond , function( err, rez){
+            console.log(300)
+            if(err){
+                console.log(err);
+                console.log(" EROARE");
+                Afis_Eroare(res, 2);
+            }
+            else{
+                // console.log(rez);
+                
+                rez.rows.forEach(function (element) {
+                    const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                    const months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                    let zi = days[element.data_adaugare.getDay()]
+                            + ", " + element.data_adaugare.getDate() 
+                            + "-" + months[element.data_adaugare.getMonth()]
+                            + "-" + element.data_adaugare.getFullYear();
+                element.data_adaugare=zi;
+
+                }, this);
+                console.log("\n\nxxxxxxxxxxxxxxxxxxx\n\n"); console.log(rez.rows); console.log("\n\nxxxxxxxxxxxxxxxxxxx\n\n");
+                res.render("pagini/produseServer", {produse:rez.rows, optiuni:rezCategorie.rows});
+            }  
+        });
+    }) 
+});
+
+app.post("/sortateServer", function (req, res) {
+    // var form = new formidable.IncomingForm();
+    const form = formidable(options);
+    console.log(form);
+    form.parse(req, function (err, fields, files) {
+
+        
+
+        client.query("select * from unnest(enum_range(null::tag_special))",function(err, rezCategorie){
+            // console.log(req.query);
+
+            var sql_query = "select * from ceasuri where ";
+            
+            let nume = fields.inp_nume; let oknume=0;
+            if(!nume){
+                nume=nume.replace(/ă/g, "a"); nume=nume.replace(/î/g, "i"); nume=nume.replace(/â/g, "a"); nume=nume.replace(/ș/g, "s"); nume=nume.replace(/ț/g, "t");
+                oknume=1;
+                console.log("\nNUME: "); console.log(nume);
+                sql_query=sql_query+"nume='"+nume+"' and ";
+            }
+
+            let tag = fields.gr_rad; let oktag=0;
+            if(!tag && tag!="toate"){
+                oktag=1;
+                sql_query=sql_query+"tag='"+tag+"' and ";
+                console.log("\nTAG: "); console.log(tag);
+            }
+
+            let pret = fields.inp_pret.reduce(function(t, s) { return t + s.value + " "  }, ""); 
+            let okpret=0; 
+            var vlp=[], vup=[];
+            if(!pret){ 
+                for(let p of pret.split(" ")){
+                    
+                    okpret=1; var lp, up;
+                    if(p){
+                        if(pret=="oricare"){
+                            okpret=0;
+                        }
+                        else{ 
+                            [lp, up]=p.split("-");
+                            lp=parseFloat(lp);
+                            up=parseFloat(up);
+                            vlp.push(lp);
+                            vup.push(up);
+                        }
+                    }
+                }
+                console.log("\nPRET: "); console.log(pret);
+            }
+
+            let material = fields.inp_material; let okmaterial=0;
+            if(!material && material!="oricare"){
+                okmaterial=1;
+                sql_query=sql_query+"material='"+material+"' and ";
+                console.log("\nMATERIAL: "); console.log(material);
+            }
+
+            let culoare = fields.inp_culoare; let okculoare=0;
+            if(!culoare){
+                culoare=culoare.replace(/ă/g, "a"); culoare=culoare.replace(/î/g, "i"); culoare=culoare.replace(/â/g, "a"); culoare=culoare.replace(/ș/g, "s"); culoare=culoare.replace(/ț/g, "t");
+                okculoare=1;
+                // sql_query=sql_query+"culoare='"+culoare+"' ";
+                console.log("\nCULOARE: "); console.log(culoare);
+            }
+
+            let dimensiune = fields.inp_dimensiune; let okdimensiune=0;
+            if(!dimensiune){
+                okdimensiune=1;
+                sql_query=sql_query+"dimensiune<='"+dimensiune+"' and ";
+                console.log("\nDIMENSIUNE: "); console.log(dimensiune);
+            }
+
+            let garantie = fields.inp_garantie; let okgarantie=0;
+            if(!garantie){
+                okgarantie=1;
+                sql_query=sql_query+"garantie='"+garantie+"' and ";
+                console.log("\nGARANTIE: "); console.log(garantie);
+            }
+
+            sql_query = sql_query+" 1=1";
+
+            // let wherecond="";
+            // if(req.query.tip)
+            //     wherecond = ` where categ_prod='${req.query.tip}'`
+
+
+
+            client.query(sql_query, function( err, rez){
+                console.log(300)
+                if(err){
+                    console.log(err);
+                    console.log(" EROARE");
+                    Afis_Eroare(res, 2);
+                }
+                else{
+                    // console.log(rez);
+                    rez.rows.forEach(function (element) {
+                        const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                        const months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                        let zi = days[element.data_adaugare.getDay()]
+                                + ", " + element.data_adaugare.getDate() 
+                                + "-" + months[element.data_adaugare.getMonth()]
+                                + "-" + element.data_adaugare.getFullYear();
+                        element.data_adaugare=zi;
+                    }, this);
+
+                    res.render("pagini/produseServer", {produse:rez.rows, optiuni:rezCategorie.rows});
+                }  
+            });
+        }) 
+
+
+
+
+        // oracledb.getConnection(connectionProperties, function (err, connection) {
+        //     if (err) {
+        //         console.error(err.message);
+        //         res.status(500).send("Error connecting to DB");
+        //         return;
+        //     }
+
+        //     console.log("After connection post",fields.etapa);
+
+
+        //     var sql_query = "with aux as (\
+        //         select unique liga.nume, nr_etapa, cod_meci, ziua, cod_echipa_acasa, nr_goluri_acasa, nr_goluri_deplasare, cod_echipa_deplasare\
+        //         from club join istoric_club using(cod_club) join liga using(cod_liga) join meci on(cod_club=cod_echipa_acasa or cod_club=cod_echipa_deplasare)\
+        //         where end_date > to_date('1-JAN-2023') and end_date < to_date('1-JAN-2024') and tip_competitie='liga' \
+        //     ) \
+        //     select cod_meci, ziua, cod_echipa_acasa \"ACASA\", nr_goluri_acasa || '-' || nr_goluri_deplasare \"SCOR\", cod_echipa_deplasare \"DEPLASARE\" \
+        //     from aux\
+        //     where nr_etapa=" + fields.etapa + "and nume=INITCAP('" + fields.liga + "')";
+            
+        //     console.log("\n\n"+sql_query+"\n\n");
+        //     connection.execute(sql_query, {}, { outFormat: oracledb.OBJECT },
+        //         function (error, result) {
+        //             if (error) {
+        //                 console.error(error.message);
+        //                 res.status(500).send("Error getting data from DB");
+        //                 doRelease(connection);
+        //                 return;
+        //             }
+        //             console.log(result);
+        //             var rezsql = [];
+
+        //             result.rows.forEach(function (element) {
+        //                 const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        //                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        //                 let zi = days[element.ZIUA.getDay()]
+        //                         + ", " + element.ZIUA.getDate() 
+        //                         + " " + months[element.ZIUA.getMonth()]
+        //                         + " " + element.ZIUA.getFullYear();
+        //                 rezsql.push({
+                            
+        //                     Ziua: zi,
+        //                     Acasa: element.ACASA,
+        //                     Scor: element.SCOR,
+        //                     Deplasare: element.DEPLASARE
+        //                 });
+
+        //             }, this);
+
+        //             doRelease(connection);
+                    
+        //             console.log("Got rezsql data"); console.log(rezsql);
+
+        //             res.render("html/stats", { ui_meci: rezsql, ui_puncte: [], ui_goluri: [], ui_viz: [] });
+        //         });
+            
+                
+        // });
+    });
+});
 
 
 

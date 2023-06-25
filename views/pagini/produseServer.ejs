@@ -13,8 +13,12 @@
     <%- include("../fragmente/header") %>
 
     <main>
+        
+        
+
+        <form action="/sortateServer" method="post">
         <div >
-        <label > Nume: <input type="text" id="inp-nume" ></label>
+        <label > Nume: <input type="text" id="inp-nume" name="inp_nume" /></label>
         </div>
 
         <div> Taguri: 
@@ -61,7 +65,7 @@
             </select> -->
         <!-- </label> -->
         <label>Preț:
-            <select id="inp-pret" multiple="" size="2">
+            <select id="inp-pret" multiple="" size="2" name="inp_pret" >
                 <option id="pret-sel-toate" selected value="oricare">oricare</option>
                 <option value="10-90"> 10-90 </option>
                 <option value="91-279"> 90-279 </option>
@@ -78,7 +82,7 @@
         
         <div>
             <lable> Material: 
-                <select id="inp-material">
+                <select id="inp-material" name="inp_material" >
                                         <!-- bonus de 0.1 :D  -->
                     <option id="material-sel-toate" selected value="oricare">oricare</option>
                     <% for (let mat of locals.materialProdus) { %>
@@ -94,7 +98,7 @@
 
         <div>
             <lable> Culoare: 
-                <input id="inp-culoare" list="col-list">
+                <input id="inp-culoare" list="col-list" name="inp_culoare" >
                 <datalist id="col-list">
                     <option value="oricare">oricare</option>
                     <option value="negru"> negru </option>
@@ -121,22 +125,23 @@
 
         <div>
             <lable> Dimeniune maximă: 
-                <span id="range-min">15</span> <input id="inp-dimensiune" type="range" value="50" min="15" max="50"> <span id="range-max">50</span> <span id="info-range"> (50) </span>
+                <span id="range-min">15</span> <input id="inp-dimensiune" type="range" value="50" min="15" max="50" name="inp_dimensiune" /> <span id="range-max">50</span> <span id="info-range"> (50) </span>
             </lable>
         </div>
 
         <div>
         <label > Cuvinte cheie: 
-            <textarea id="inp-descriere" style="width: 500px; height: 35px;"></textarea>
+            <textarea id="inp-descriere" style="width: 500px; height: 35px;" name="inp_descriere" ></textarea>
         </label>
         </div>
 
         <div>
         <lable> Garanție asigurată: 
-            <input id="inp-garantie" value="true" type="checkbox">
+            <input id="inp-garantie" value="true" type="checkbox" name="inp_garantie" /> 
         </lable>
         </div>
-
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         <br><br>
 
         <div>

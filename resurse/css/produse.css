@@ -131,3 +131,6 @@ body.focus {
     display: none;
   }
 }
+.mysortfield:checked {
+  background-color: #3f158d;
+}

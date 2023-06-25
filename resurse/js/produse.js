@@ -179,17 +179,18 @@ window.addEventListener("load",function() {
             myp.id="zeroproduse";
             document.getElementById("produse").appendChild(myp);
         }
+        else{
+            myp=document.getElementById("zeroproduse");
+            if(myp){
+                myp.remove();
+            }
+        }
     }
 
 
 
 
     document.getElementById("resetare").onclick= function(){
-        
-        myp=document.getElementById("zeroproduse");
-        if(myp){
-            myp.remove();
-        }
 
         document.getElementById("inp-nume").value="";
         document.getElementById("i_rad6").checked=true;
@@ -221,8 +222,6 @@ window.addEventListener("load",function() {
         document.getElementById("inp-garantie").checked=false;
 
 
-
-
         // document.getElementById("inp-categorie").value="toate";
         // var produse=document.getElementsByClassName("produs");
         // document.getElementById("infoRange").innerHTML="(0)";
@@ -230,7 +229,7 @@ window.addEventListener("load",function() {
         //     prod.style.display="block";
         // }
     }
-    function sortare (semn){
+    function sortareHC (semn){
         var produse=document.getElementsByClassName("produs");
         var v_produse= Array.from(produse);
         v_produse.sort(function (a,b){
@@ -248,10 +247,56 @@ window.addEventListener("load",function() {
         }
     }
     document.getElementById("sortCrescNume").onclick=function(){
-        sortare(1);
+        sortareHC(1);
     }
     document.getElementById("sortDescrescNume").onclick=function(){
-        sortare(-1);
+        sortareHC(-1);
+    }
+    function sortareCustom (semn,field1,field2,field3){
+        var produse=document.getElementsByClassName("produs");
+        var v_produse= Array.from(produse);
+        v_produse.sort(function (a,b){
+            if(!field1){return 0;}
+            let f1_a=a.getElementsByClassName("val-"+field1)[0].innerHTML;
+            let f1_b=b.getElementsByClassName("val-"+field1)[0].innerHTML;
+            
+            if(f1_a==f1_b){
+                if(!field2){return semn;}else{
+                    let f2_a=a.getElementsByClassName("val-"+field2)[0].innerHTML;
+                    let f2_b=b.getElementsByClassName("val-"+field2)[0].innerHTML;
+                    if(f2_a==f2_b){
+                        if(!field3){return semn;}else{
+                            let f3_a=a.getElementsByClassName("val-"+field2)[0].innerHTML;
+                            let f3_b=b.getElementsByClassName("val-"+field2)[0].innerHTML;
+                            return semn*f3_a.localeCompare(f3_b);
+                        }
+                    }   
+                    return semn*f2_a.localeCompare(f2_b);
+                }
+            }
+            let test = f1_a.localeCompare(f1_b);
+            return semn*f1_a.localeCompare(f1_b);
+        });
+        for(let prod of v_produse){
+            prod.parentElement.appendChild(prod);
+        }
+    }
+    document.getElementById("sortCustom").onclick=function(){
+        let ordine = document.getElementById("ordine-sortare").value;
+        let sgn = 1;
+        if(ordine=="descrescator"){
+            sgn=-1;
+        }
+
+        let vfields = Array.from(document.querySelectorAll("#campuri-sortare :checked")).reduce(function(t, s) { return t + s.value + " "  }, "")
+        let varg=[null, null, null];
+        let i=0;
+        for(let f of vfields.split(" ")){
+            varg[i]=f;
+            i++;
+        }
+        
+        sortareCustom(sgn,varg[0],varg[1],varg[2]);
     }
 
 
