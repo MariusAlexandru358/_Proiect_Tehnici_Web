@@ -1,3 +1,5 @@
+// import { createRequire } from "module";
+// const require = createRequire(import.meta.url);
 const express=require("express");
 const fs=require('fs');
 const path=require('path');
@@ -5,9 +7,17 @@ const sharp=require('sharp');
 const sass=require('sass');
 const ejs=require('ejs');
 const {Client}=require('pg');
-// const formidable = require('formidable');
-import formidable from 'formidable';
+const formidable = require('formidable');
 
+// import * as formidable from 'formidable';
+// import express from 'express';
+// import * as fs from 'fs';
+// import * as path from 'path';
+// import * as sharp from 'sharp';
+// import * as sass from 'sass';
+// import * as ejs from 'ejs';
+// import pkg from 'pg';
+// const {Client} = pkg;
 
 var client= new Client({database:"_tickertinker",
         user:"alexandru__marius_cristian",
@@ -339,8 +349,8 @@ app.get("/produseServer",function(req, res){
 });
 
 app.post("/sortateServer", function (req, res) {
-    // var form = new formidable.IncomingForm();
-    const form = formidable(options);
+    var form = new formidable.IncomingForm();
+    // const form = formidable(options);
     console.log(form);
     form.parse(req, function (err, fields, files) {
 
@@ -351,8 +361,8 @@ app.post("/sortateServer", function (req, res) {
 
             var sql_query = "select * from ceasuri where ";
             
-            let nume = fields.inp_nume; let oknume=0;
-            if(!nume){
+            let nume = fields.inp_nume.toLocaleLowerCase(); let oknume=0;
+            if(nume){
                 nume=nume.replace(/ă/g, "a"); nume=nume.replace(/î/g, "i"); nume=nume.replace(/â/g, "a"); nume=nume.replace(/ș/g, "s"); nume=nume.replace(/ț/g, "t");
                 oknume=1;
                 console.log("\nNUME: "); console.log(nume);
@@ -360,44 +370,54 @@ app.post("/sortateServer", function (req, res) {
             }
 
             let tag = fields.gr_rad; let oktag=0;
-            if(!tag && tag!="toate"){
+            if(tag && tag!="toate"){
                 oktag=1;
                 sql_query=sql_query+"tag='"+tag+"' and ";
                 console.log("\nTAG: "); console.log(tag);
             }
 
-            let pret = fields.inp_pret.reduce(function(t, s) { return t + s.value + " "  }, ""); 
+            let pret = fields.inp_pret;
+            console.log("\n\n\nFIELDS.PRET\n\n"); console.log(pret); console.log("\n\n"); 
             let okpret=0; 
             var vlp=[], vup=[];
-            if(!pret){ 
-                for(let p of pret.split(" ")){
-                    
+            if(pret){
+                console.log(typeof pret);
+                if(typeof pret=="string" && pret!="oricare"){
+                    [lp, up]=pret.split("-");
+                    console.log("\nlp up: "); console.log(lp,up);
+                    lp=parseFloat(lp);
+                    up=parseFloat(up);
+                    sql_query=sql_query+"pret>="+lp+" and "+"pret<="+up+" and ";
+                }else if(typeof pret=="string" && pret=="oricare"){}
+                else{
+                    if(pret[0]!="oricare"){
+                        sql_query=sql_query+"(";
+                    }
+                for(let p of pret){
                     okpret=1; var lp, up;
-                    if(p){
-                        if(pret=="oricare"){
-                            okpret=0;
-                        }
-                        else{ 
                             [lp, up]=p.split("-");
+                            console.log("\nlp up: "); console.log(lp,up);
                             lp=parseFloat(lp);
                             up=parseFloat(up);
-                            vlp.push(lp);
-                            vup.push(up);
-                        }
-                    }
+                            sql_query=sql_query+"(pret>="+lp+" and "+"pret<="+up+") or ";
                 }
-                console.log("\nPRET: "); console.log(pret);
+
+                if(okpret==1){sql_query=sql_query+"1=0) and ";}
+                }
+                
+                    
+                console.log("\nPRET: "); console.log(vlp,vup);
             }
 
             let material = fields.inp_material; let okmaterial=0;
-            if(!material && material!="oricare"){
+            if(material && material!="oricare"){
                 okmaterial=1;
                 sql_query=sql_query+"material='"+material+"' and ";
                 console.log("\nMATERIAL: "); console.log(material);
             }
 
-            let culoare = fields.inp_culoare; let okculoare=0;
-            if(!culoare){
+            let culoare = fields.inp_culoare.toLocaleLowerCase(); let okculoare=0;
+            if(culoare){
                 culoare=culoare.replace(/ă/g, "a"); culoare=culoare.replace(/î/g, "i"); culoare=culoare.replace(/â/g, "a"); culoare=culoare.replace(/ș/g, "s"); culoare=culoare.replace(/ț/g, "t");
                 okculoare=1;
                 // sql_query=sql_query+"culoare='"+culoare+"' ";
@@ -405,21 +425,53 @@ app.post("/sortateServer", function (req, res) {
             }
 
             let dimensiune = fields.inp_dimensiune; let okdimensiune=0;
-            if(!dimensiune){
+            if(dimensiune){
                 okdimensiune=1;
-                sql_query=sql_query+"dimensiune<='"+dimensiune+"' and ";
+                sql_query=sql_query+"dimensiune<="+dimensiune+" and ";
                 console.log("\nDIMENSIUNE: "); console.log(dimensiune);
             }
 
             let garantie = fields.inp_garantie; let okgarantie=0;
-            if(!garantie){
+            if(garantie){
                 okgarantie=1;
                 sql_query=sql_query+"garantie='"+garantie+"' and ";
                 console.log("\nGARANTIE: "); console.log(garantie);
             }
 
+            let keywords = fields.inp_descriere.toLocaleLowerCase();
+            if(keywords){
+                keywords=keywords.replace(/ă/g, "a"); keywords=keywords.replace(/î/g, "i"); keywords=keywords.replace(/â/g, "a"); keywords=keywords.replace(/ș/g, "s"); keywords=keywords.replace(/ț/g, "t");
+                let vkw=keywords.split(" ");
+                for(let kw of vkw){
+                    if(kw[0]=='+'){
+                        sql_query=sql_query+"lower(descriere) like '%"+kw.substring(1)+"%' and "
+                    }
+                    if(kw[0]=='-'){
+                        sql_query=sql_query+"lower(descriere) not like '%"+kw.substring(1)+"%' and "
+                    }
+                }
+            }
+
             sql_query = sql_query+" 1=1";
 
+            let ordineSort = fields.ordine_sortare;
+            let ordinesql;
+            if(ordineSort=="crescator"){
+                ordinesql="asc";
+            }
+            else{
+                ordinesql="desc";
+            }
+            let campuriSort = fields.campuri_sortare;
+            if(campuriSort){
+                sql_query = sql_query+" order by ";
+                for(let f of campuriSort){
+                    sql_query = sql_query+f+" "+ordinesql+", ";
+                }
+                sql_query=sql_query+"id asc";
+            }
+
+            console.log("\n\n\nSQL\n\n"); console.log(sql_query); console.log("\n\n"); 
             // let wherecond="";
             // if(req.query.tip)
             //     wherecond = ` where categ_prod='${req.query.tip}'`
