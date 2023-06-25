@@ -4,7 +4,47 @@ window.addEventListener("load",function() {
         document.getElementById("info-range").innerHTML=`(${this.value})`
     }
 
+    
+    function Paginare(k,n,page){
+        let produse = document.getElementsByClassName("paginare");
+        let crt=0;
+        for(let prod of produse){
+            if(crt>=(page-1)*k && crt<=page*k-1){
+                prod.style.display="grid";
+            }
+            else{
+                prod.style.display="none";
+            }
+            crt++;
+        }
+        let links=document.getElementsByClassName("pagelink");
+        if(links) {
+            let ll=links.length;
+            for(let i=1;i<=ll;i++){
+                links[0].remove();
+            }
+        }
+        for(let i=0;i<crt/k;i++){
+            var button = document.createElement("button");
+            button.classList.add("pagelink");
+            button.classList.add("btn");
+            button.classList.add("btn-secondary");
+            button.innerHTML=i+1;
+            button.style.display="flex";
+            button.id="buton-paginare-"+i;
+            button.onclick=function(){
+                Paginare(k,crt,i+1);
+            }
+            document.getElementById("divpagelink").appendChild(button);
+            // var brneeded = document.createElement("br");
+            // document.getElementById("divpagelink").appendChild(brneeded);
+        }
+    }
 
+    // document.getElementsByClassName("pagelink").onclick=function(){
+    //     let produse = document.getElementsByClassName("paginare");
+    //     Paginare(4,produse.length,Number(this.innerHTML));
+    // }
 
     document.getElementById("filtrare").onclick= function(){
         let avemproduse=0;
@@ -168,8 +208,12 @@ window.addEventListener("load",function() {
 
 
             if(cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7 && cond8){
-                prod.style.display="grid";
+                // prod.style.display="grid";
+                prod.classList.add("paginare");
                 avemproduse++;
+            }
+            else{
+                prod.classList.remove("paginare");
             }
         }
 
@@ -184,6 +228,7 @@ window.addEventListener("load",function() {
             if(myp){
                 myp.remove();
             }
+            Paginare(4,document.getElementsByClassName("produs").length,1);
         }
     }
 
@@ -230,7 +275,7 @@ window.addEventListener("load",function() {
         // }
     }
     function sortareHC (semn){
-        var produse=document.getElementsByClassName("produs");
+        var produse=document.getElementsByClassName("paginare");
         var v_produse= Array.from(produse);
         v_produse.sort(function (a,b){
             let pret_a=parseFloat(a.getElementsByClassName("val-pret")[0].innerHTML);
@@ -245,6 +290,7 @@ window.addEventListener("load",function() {
         for(let prod of v_produse){
             prod.parentElement.appendChild(prod);
         }
+        Paginare(4,v_produse.length,1);
     }
     document.getElementById("sortCrescNume").onclick=function(){
         sortareHC(1);
@@ -253,7 +299,7 @@ window.addEventListener("load",function() {
         sortareHC(-1);
     }
     function sortareCustom (semn,field1,field2,field3){
-        var produse=document.getElementsByClassName("produs");
+        var produse=document.getElementsByClassName("paginare");
         var v_produse= Array.from(produse);
         v_produse.sort(function (a,b){
             if(!field1){return 0;}
@@ -280,6 +326,7 @@ window.addEventListener("load",function() {
         for(let prod of v_produse){
             prod.parentElement.appendChild(prod);
         }
+        Paginare(4,v_produse.length,1);
     }
     document.getElementById("sortCustom").onclick=function(){
         let ordine = document.getElementById("ordine-sortare").value;
@@ -329,5 +376,9 @@ window.addEventListener("load",function() {
         // d.remove();
     }
 
-
+    let produse = document.getElementsByClassName("produs")
+    for(let prod of produse){
+        prod.classList.add("paginare");
+    }
+    Paginare(4,produse.length,1)
 });
