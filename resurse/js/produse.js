@@ -30,7 +30,6 @@ window.addEventListener("load",function() {
             button.classList.add("btn");
             button.classList.add("btn-secondary");
             button.innerHTML=i+1;
-            button.style.display="flex";
             button.id="buton-paginare-"+i;
             button.onclick=function(){
                 Paginare(k,crt,i+1);

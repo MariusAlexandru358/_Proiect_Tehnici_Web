@@ -14,7 +14,7 @@
 
     <main>
         <div >
-        <label > Nume: <input type="text" id="inp-nume" ></label>
+        <label > Nume: <input type="text" id="inp-nume" class="inp-area" /></label>
         </div>
 
         <div> Taguri: 
@@ -61,11 +61,11 @@
             </select> -->
         <!-- </label> -->
         <label>Preț:
-            <select id="inp-pret" multiple="" size="2">
-                <option id="pret-sel-toate" selected value="oricare">oricare</option>
-                <option value="10-90"> 10-90 </option>
-                <option value="91-279"> 90-279 </option>
-                <option value="279-999"> 279-999 </option>
+            <select id="inp-pret" multiple="" size="2" class="inp-area" >
+                <option id="pret-sel-toate" selected value="oricare" class="inp-area" >oricare</option>
+                <option value="10-90" class="inp-area" > 10-90 </option>
+                <option value="91-279" class="inp-area" > 90-279 </option>
+                <option value="279-999" class="inp-area" > 279-999 </option>
             </select>
             <!-- <select id="inp-categorie">
                 <option id="sel-toate" selected value="toate">toate</option>
@@ -78,11 +78,11 @@
         
         <div>
             <lable> Material: 
-                <select id="inp-material">
+                <select id="inp-material" class="inp-area" >
                                         <!-- bonus de 0.1 :D  -->
-                    <option id="material-sel-toate" selected value="oricare">oricare</option>
+                    <option id="material-sel-toate" selected value="oricare" class="inp-area" >oricare</option>
                     <% for (let mat of locals.materialProdus) { %>
-                        <option value="<%- JSON.stringify(mat).split("\"")[3] %>"><%- JSON.stringify(mat).split("\"")[3] %> </option>
+                        <option value="<%- JSON.stringify(mat).split("\"")[3] %>" class="inp-area" ><%- JSON.stringify(mat).split("\"")[3] %> </option>
                     <% } %>
                     <!-- <option value="metal"> metal </option>
                     <option value="plastic"> plastic </option>
@@ -94,7 +94,7 @@
 
         <div>
             <lable> Culoare: 
-                <input id="inp-culoare" list="col-list">
+                <input id="inp-culoare" list="col-list" class="inp-area" >
                 <datalist id="col-list">
                     <option value="oricare">oricare</option>
                     <option value="negru"> negru </option>
@@ -127,7 +127,7 @@
 
         <div>
         <label > Cuvinte cheie: 
-            <textarea id="inp-descriere" style="width: 500px; height: 35px;"></textarea>
+            <textarea id="inp-descriere" style="width: 500px; height: 35px;" class="inp-area" ></textarea>
         </label>
         </div>
 

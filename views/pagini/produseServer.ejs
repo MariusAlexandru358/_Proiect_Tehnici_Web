@@ -18,7 +18,7 @@
 
         <form action="/sortateServer" method="post">
         <div >
-        <label > Nume: <input type="text" id="inp-nume" name="inp_nume" /></label>
+        <label > Nume: <input type="text" id="inp-nume" name="inp_nume" class="inp-area" /></label>
         </div>
 
         <div> Taguri: 
@@ -65,11 +65,11 @@
             </select> -->
         <!-- </label> -->
         <label>Preț:
-            <select id="inp-pret" multiple="" size="2" name="inp_pret" >
-                <option id="pret-sel-toate" selected value="oricare">oricare</option>
-                <option value="10-90"> 10-90 </option>
-                <option value="91-279"> 90-279 </option>
-                <option value="279-999"> 279-999 </option>
+            <select id="inp-pret" multiple="" size="2" name="inp_pret" class="inp-area" >
+                <option id="pret-sel-toate" selected value="oricare" class="inp-area" >oricare</option>
+                <option value="10-90" class="inp-area" > 10-90 </option>
+                <option value="91-279" class="inp-area" > 90-279 </option>
+                <option value="279-999" class="inp-area" > 279-999 </option>
             </select>
             <!-- <select id="inp-categorie">
                 <option id="sel-toate" selected value="toate">toate</option>
@@ -82,11 +82,11 @@
         
         <div>
             <lable> Material: 
-                <select id="inp-material" name="inp_material" >
+                <select id="inp-material" name="inp_material" class="inp-area" >
                                         <!-- bonus de 0.1 :D  -->
-                    <option id="material-sel-toate" selected value="oricare">oricare</option>
+                    <option id="material-sel-toate" selected value="oricare" class="inp-area" >oricare</option>
                     <% for (let mat of locals.materialProdus) { %>
-                        <option value="<%- JSON.stringify(mat).split("\"")[3] %>"><%- JSON.stringify(mat).split("\"")[3] %> </option>
+                        <option value="<%- JSON.stringify(mat).split("\"")[3] %>" class="inp-area" ><%- JSON.stringify(mat).split("\"")[3] %> </option>
                     <% } %>
                     <!-- <option value="metal"> metal </option>
                     <option value="plastic"> plastic </option>
@@ -98,7 +98,7 @@
 
         <div>
             <lable> Culoare: 
-                <input id="inp-culoare" list="col-list" name="inp_culoare" >
+                <input id="inp-culoare" list="col-list" name="inp_culoare" class="inp-area" >
                 <datalist id="col-list">
                     <option value="oricare">oricare</option>
                     <option value="negru"> negru </option>
@@ -131,7 +131,7 @@
 
         <div>
         <label > Cuvinte cheie: 
-            <textarea id="inp-descriere" style="width: 500px; height: 35px;" name="inp_descriere" ></textarea>
+            <textarea id="inp-descriere" style="width: 500px; height: 35px;" name="inp_descriere" class="inp-area" ></textarea>
         </label>
         </div>
 
@@ -141,7 +141,7 @@
         </lable>
         </div>
         <div>
-        <span class="text-butoane"> &nbsp; Sortare custom integrată</button>
+        <span class="text-butoane"> &nbsp; Sortare custom integrată: </button>
             <select id="ordine-sortare" class="btn btn-secondary" name="ordine_sortare">
                 <option id="material-sel-toate" selected value="crescator">crescător</option>
                 <option value="descrescator">descrescător</option>

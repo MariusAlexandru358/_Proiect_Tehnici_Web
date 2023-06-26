@@ -134,3 +134,21 @@ body.focus {
 .mysortfield:checked {
   background-color: #3f158d;
 }
+
+.pagelink {
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
+  transition: background-color 0.25s linear;
+}
+.pagelink:hover {
+  background-color: var(--culoare-hd-produs);
+}
+
+.inp-area {
+  background-color: var(--culoare-fundal);
+  color: var(--culoare-text);
+}
+.inp-area:checked {
+  background-color: var(--culoare-hd-produs);
+  color: var(--culoare-text);
+}

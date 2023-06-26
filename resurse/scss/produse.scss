@@ -152,3 +152,22 @@ body.focus{
 .mysortfield:checked{
     background-color: #3f158d;
 }
+
+
+.pagelink{
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+    transition: background-color 0.25s linear;
+    &:hover{
+        background-color: var(--culoare-hd-produs);
+    }
+}
+
+.inp-area{
+    background-color: var(--culoare-fundal);
+    color: var(--culoare-text);
+    &:checked{
+        background-color: var(--culoare-hd-produs);
+        color: var(--culoare-text);
+    }
+}
