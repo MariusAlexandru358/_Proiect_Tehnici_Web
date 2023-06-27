@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        
+        <link rel="stylesheet" href="/resurse/css/jucarii.css" type="text/css" />
+        <title>TickerTinker</title>
+        <%- include("../fragmente/head") %>     
+        <script type="text/javascript" src=/resurse/js/jucarii.js></script>
+
+    </head>
+    <body>
+    <%- include("../fragmente/header") %>
+
+    <main>
+        <!-- <div >
+        <label > Nume: <input type="text" id="inp-nume" class="inp-area" /></label>
+        </div>
+
+        <div> Taguri: 
+            <label class="radio_tag btn btn-outline-info" > &nbsp; &nbsp; &nbsp; Comun 
+                <input id="i_rad1"  name="gr_rad" value="comun" type="radio" />
+            </label>
+            
+            <label class="radio_tag btn btn-outline-info" > &nbsp; &nbsp; &nbsp; Ofertă
+                <input id="i_rad2"  name="gr_rad" value="oferta" type="radio" />
+            </label>
+
+            <label class="radio_tag btn btn-outline-info" > &nbsp; &nbsp; &nbsp; Ediție limitată
+                <input id="i_rad3"  name="gr_rad" value="editie limitata" type="radio" />
+            </label>
+            
+            <label class="radio_tag btn btn-outline-info" > &nbsp; &nbsp; &nbsp;  Pentru copii
+                <input id="i_rad4"  name="gr_rad" value="pentru copii" type="radio" />
+            </label>
+
+            <label class="radio_tag btn btn-outline-info" > &nbsp; &nbsp; &nbsp; Comandă specială 
+                <input id="i_rad5"  name="gr_rad" value="comanda speciala" type="radio" />
+            </label>
+            <label class="radio_tag btn btn-outline-info" > &nbsp; &nbsp; &nbsp; Toate 
+                <input id="i_rad6" checked name="gr_rad" value="toate" type="radio" />
+            </label>
+        </div>
+
+        
+       <div>
+        
+        <label>Preț:
+            <select id="inp-pret" multiple="" size="2" class="inp-area" >
+                <option id="pret-sel-toate" selected value="oricare" class="inp-area" >oricare</option>
+                <option value="10-90" class="inp-area" > 10-90 </option>
+                <option value="91-279" class="inp-area" > 90-279 </option>
+                <option value="279-999" class="inp-area" > 279-999 </option>
+            </select>
+            
+        </label>
+        </div>
+        
+        <div>
+            <lable> Material: 
+                <select id="inp-material" class="inp-area" >
+                                        
+                    <option id="material-sel-toate" selected value="oricare" class="inp-area" >oricare</option>
+                    <% for (let mat of locals.materialProdus) { %>
+                        <option value="<%- JSON.stringify(mat).split("\"")[3] %>" class="inp-area" ><%- JSON.stringify(mat).split("\"")[3] %> </option>
+                    <% } %>
+                    
+                </select> 
+            </lable>
+        </div>
+
+        <div>
+            <lable> Culoare: 
+                <input id="inp-culoare" list="col-list" class="inp-area" >
+                <datalist id="col-list">
+                    <option value="oricare">oricare</option>
+                    <option value="negru"> negru </option>
+                    <option value="rosu"> rosu </option>
+                    <option value="albastru"> albastru </option>
+                    <option value="alb"> alb </option>
+                    <option value="gri"> gri </option>
+                    <option value="verde"> verde </option>
+                    <option value="violet"> violet </option>
+                    <option value="galben"> galben </option>
+                    <option value="gold"> gold </option>
+                    <option value="silver"> silver </option>
+                    <option value="maro"> maro </option>
+                    <option value="culoare-deschisa"> culoare-deschisa </option>
+                    <option value="culoare-inchisa"> culoare-inchisa </option>
+                    <option value="indigo"> indigo </option>
+                    <option value="bej"> bej </option>
+                    <option value="auriu"> auriu </option>
+                    <option value="argintiu"> argintiu </option>
+                </datalist> 
+            </lable>
+        </div>
+
+        <div>
+            <lable> Dimeniune maximă: 
+                <span id="range-min">15</span> <input id="inp-dimensiune" type="range" value="50" min="15" max="50"> <span id="range-max">50</span> <span id="info-range"> (50) </span>
+            </lable>
+        </div>
+
+        <div>
+        <label > Cuvinte cheie: 
+            <textarea id="inp-descriere" style="width: 500px; height: 35px;" class="inp-area" ></textarea>
+        </label>
+        </div>
+
+        <div>
+        <lable> Garanție asigurată: 
+            <input id="inp-garantie" value="true" type="checkbox">
+        </lable>
+        </div>
+
+        <br><br>
+
+        <div>
+  -->
+        <button id="filtrare" class="btn btn-secondary">  
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+            </svg>
+        <span class="text-butoane"> &nbsp; Filtreaza </span></button> 
+<!--
+        <button id="resetare" class="btn btn-secondary">  
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+            </svg>
+        <span class="text-butoane"> &nbsp; Reseteaza </span></button>
+
+        <br><br>
+
+        -->    
+
+
+        <button id="sortCustom" class="btn btn-secondary"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M6 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        <span class="text-butoane"> &nbsp; Sorteaza custom</button>
+                                                    <select id="ordine-sortare" class="btn btn-secondary">
+                                                        <option selected value="crescator">ascendent</option>
+                                                        <option value="descrescator">descendent</option>
+                                                    </select> 
+                                                    <!-- <span class="btn btn-secondary">dupa</span>  -->
+                                                    <!-- <select id="campuri-sortare" multiple="" size="1" class="btn btn-secondary">
+                                                        <option value="categorie" class="mysortfield badge badge-secondary"> categorie </option>
+                                                        <option value="baterie" class="mysortfield badge badge-secondary"> baterie </option>
+                                                        <option value="material" class="mysortfield badge badge-secondary"> material </option>
+                                                    </select> -->
+                                                </span></button>
+
+        <br><br>
+<!--
+        <button id="sortCrescNume" class="btn btn-secondary"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
+                <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+            </svg>
+        <span class="text-butoane"> &nbsp; Sorteaza crescator dupa pret si nume </span></button>
+
+        <button id="sortDescrescNume" class="btn btn-secondary"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
+                <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V7z"/>
+                <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371h-1.781zm1.57-.785L11 9.688h-.047l-.652 2.156h1.351z"/>
+                <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+            </svg>
+        <span class="text-butoane"> &nbsp; Sorteaza descrescator dupa pret si nume </span></button>
+
+        <br><br>
+
+        <button id="average" class="btn btn-secondary"> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+            </svg>
+        <span class="text-butoane"> &nbsp; Media prețurilor produselor afișate:  </span><span id="insert-avg"></span></button>
+        </div> -->
+
+        <br><hr class="hr"><br>
+        <section id="produse">
+            <h2>Produse</h2>
+            <!-- <div id="divpagelink" style="display: flex;"><h4>Paginare produse:</h4></div><br> -->
+            <div class="grid-produse">
+                <% for( let prod of locals.produse) { %>
+                    <article class="produs <%-prod.categ_produs%>" >
+                        <h2 class="titlu nume">Nume: <span class="val-nume"><%- prod.nume %></span></h2>
+                        
+                        <p class="varsta"> Varsta minima: <span class="val-varsta"><%- prod.varsta_minima %></span></p>
+                        
+                        <ul class="culori"> Culori: <span class="vculori"><%- prod.culori %></span>
+                                
+                        </ul>
+
+
+                        <lable class="lable-pret-examen"> Pret: <span class="val-pret-examen"> <%- prod.pret %> RON </span> 
+                            <input class="pret-examen" value="true" type="checkbox">
+                        </lable>
+
+                        <p class="data_adaugare">Adăugat: <time datetime="<%-prod.data_adaugare%>" class="val-data-adaugare"><%- prod.data_adaugare %></time></p>
+
+
+
+
+                        <!-- <p class="descriere"><span class="val-descriere"><%-prod.descriere%></span></p>
+
+                        <figure>
+                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                        </figure>
+                        
+                        <div class="info-prod">
+                            <ul>
+                                <li class="pret">Preț: <span class="val-pret"><%- prod.pret%> RON</span></li>
+                                <li class="material">Material: <span class="val-material"><%- prod.material%></span></li>
+                                <li class="baterie">Baterie: <span class="val-baterie"><%- prod.tip_baterie%></span></li>
+                                <li class="culori">Culori disponibile: <span class="val-culori"><%- prod.culori_disponibile%></span></li>
+                                <li class="dimensiune">Dimensiune: <span class="val-dimensiune"><%- prod.dimensiune%></span></li>
+                                <li class="data_adaugare">Adăugat: <time datetime="<%-prod.data_adaugare%>" class="val-data-adaugare"><%- prod.data_adaugare%></time></li>
+                                <li class="garantie">Garanție: <span class="val-garantie"><%- prod.garantie%></span></li>
+                                <li class="tag">Tag: <span class="val-tag"><%- prod.tag%></span></li>
+                            </ul>
+                            
+                        </div>
+                        <br><br><br>
+                            <label class="selecteaza-cos">
+                                Selectează:<br>
+                                <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                            </label> -->
+                            
+                    </article>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include("../fragmente/footer") %>
+    </body>
+</html>

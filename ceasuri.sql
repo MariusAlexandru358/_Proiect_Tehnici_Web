@@ -69,6 +69,9 @@ where id=11;
 
 
 select * from ceasuri
-order by id asc;
+order by id asc, pret asc;
 
 select distinct material from ceasuri;
+
+
+select * from ceasuri where ((pret>=10 and pret<=90) or ((pret>=91 and pret<=279) or 1=0) and dimensiune<=50 and id>=0;

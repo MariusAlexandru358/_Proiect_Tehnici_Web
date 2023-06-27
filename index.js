@@ -570,6 +570,71 @@ app.post("/sortateServer", function (req, res) {
 
 
 
+app.get("/jucarii",function(req,res){
+    client.query("select * from unnest(enum_range(null::tag_special))",function(err, rezCategorie){
+        console.log(req.query);
+        let wherecond="";
+        if(req.query.tip)
+            wherecond = ` where categ_prod='${req.query.tip}'`
+        client.query("select * from jucarii"+wherecond , function( err, rez){
+            console.log(300)
+            if(err){
+                console.log(err);
+                console.log(" EROARE");
+                Afis_Eroare(res, 2);
+            }
+            else{
+                // console.log(rez);
+                function addZero(i) {
+                    if (i < 10) {i = "0" + i}
+                    return i;
+                  }
+                  
+                rez.rows.forEach(function (element) {
+                    const days = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+                    const months = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+                    
+                    let h = addZero(element.data_adaugare.getHours());
+                    let m = addZero(element.data_adaugare.getMinutes());
+                    let s = addZero(element.data_adaugare.getSeconds());
+                    let time = h + ":" + m + ":" + s;
+                    let zi = days[element.data_adaugare.getDay()]
+                            + "(" + element.data_adaugare.getDate() 
+                            + "/" + element.data_adaugare.getMonth()
+                            + "/" + element.data_adaugare.getFullYear()
+                            + ", " + time
+                            + ")";
+                    element.data_adaugare=zi;
+
+                    // element.culori.sort(function (a,b){
+                    //     return a.length-b.length;
+                    // });
+
+                }, this);
+
+
+
+                res.render("pagini/jucarii", {produse:rez.rows, optiuni:rezCategorie.rows});
+            }  
+        });
+    }) 
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get("/*.ejs",function(req, res){
     Afis_Eroare(res,400);
