@@ -8,16 +8,20 @@ const sass=require('sass');
 const ejs=require('ejs');
 const {Client}=require('pg');
 const formidable = require('formidable');
+// const AccesBD= require("./module_proprii/accesbd.js");
+// const {Utilizator}=require("./module_proprii/utilizator.js")
+// const session=require('express-session');
+// const Drepturi = require("./module_proprii/drepturi.js");
 
-// import * as formidable from 'formidable';
-// import express from 'express';
-// import * as fs from 'fs';
-// import * as path from 'path';
-// import * as sharp from 'sharp';
-// import * as sass from 'sass';
-// import * as ejs from 'ejs';
-// import pkg from 'pg';
-// const {Client} = pkg;
+// AccesBD.getInstanta().select(
+//     {tabel:"ceasuri", 
+//     campuri:["nume", "pret", "categorie", "material"], 
+//     conditiiAnd:["pret>80"]}, 
+//     function (err, rez){
+//         console.log(err);
+//         console.log(rez);
+//     }
+// )
 
 var client= new Client({database:"_tickertinker",
         user:"alexandru__marius_cristian",

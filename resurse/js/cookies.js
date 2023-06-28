@@ -1,6 +1,16 @@
 
 //setCookie("a",10, 1000)
-function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
+function setCookie(nume, val, timpExpirare){
+    if(nume!="acceptat_banner"){
+        if(getCookie("acceptat_banner")){
+            d=new Date();
+            d.setTime(d.getTime()+timpExpirare)
+            document.cookie=`${nume}=${val}; expires=${d.toUTCString()}`;
+        }
+        else{
+            return;
+        }
+    }
     d=new Date();
     d.setTime(d.getTime()+timpExpirare)
     document.cookie=`${nume}=${val}; expires=${d.toUTCString()}`;
@@ -10,16 +20,23 @@ function getCookie(nume){
     vectorParametri=document.cookie.split(";") // ["a=10","b=ceva"]
     for(let param of vectorParametri){
         if (param.trim().startsWith(nume+"="))
-            return param.split("=")[1]
+            return param.split("=")[1];
     }
     return null;
 }
 
 function deleteCookie(nume){
-    console.log(`${nume}; expires=${(new Date()).toUTCString()}`)
+    console.log(`${nume}; expires=${(new Date()).toUTCString()}`);
     document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
 }
 
+function deleteAllCookies() {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+        console.log(`${nume}; expires=${(new Date()).toUTCString()}`);
+        document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
+    }
+}
 
 window.addEventListener("load", function(){
     if (getCookie("acceptat_banner")){
@@ -28,6 +45,6 @@ window.addEventListener("load", function(){
 
     this.document.getElementById("ok_cookies").onclick=function(){
         setCookie("acceptat_banner",true,60000);
-        document.getElementById("banner").style.display="none"
+        document.getElementById("banner").style.display="none";
     }
 })

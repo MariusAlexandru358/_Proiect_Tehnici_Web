@@ -354,35 +354,7 @@
 
 
 
-                <section id="galerie-statica" class="efect-css-reflexie-text">
-                    <div><h2 id="text" class="efect-h-gal">Galerie CGI</h2>
-                    <h2 id="text-reflectat" class="efect-h-gal">Galerie CGI</h2></div>
-                    <p>Parteneriatul cu Universitatea București a făcut posibilă organizarea concursului UniBuc-CGI-2023, care a produs rezultate impresionante. 
-                        Zece studenti diferiți a căror date personale sunt protejate de legea 363 28/12/2018 au fost premiați pentru munca lor: </p>
-                    <div id="grid-galerie">
-                        <%  for (let imag of locals.imagini) {  %>
-                            <%  d=new Date();   %>
-                            <!--  -->
-                            <%  if( (d.getHours()>Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)))    ||  
-                                    (d.getHours()==Number(imag.timp.substr(0,2)) && d.getHours()<Number(imag.timp.substr(6,2)) && d.getMinutes()>=Number(imag.timp.substr(3,2)))   ||
-                                    (d.getHours()==Number(imag.timp.substr(6,2)) && d.getHours()>Number(imag.timp.substr(0,2)) && d.getMinutes()<=Number(imag.timp.substr(9,2)))   )
-                            %>
-                            <%  {   %>
-                           
-                                <figure>
-                                    <picture>
-                                        <source srcset="<%- imag.cale_imagine_mediu %>" media="(max-width:1100px)" />
-                                        <img src="<%- imag.cale_imagine %>" alt="<%- (imag.alt)?imag.alt:imag.titlu %>">
-                                    </picture>
-                                    <figcaption><%- imag.descriere %></figcaption>
-                                    <title><%- imag.titlu %></title>
-                                </figure>
-                    
-                    
-                                <%  }  %>
-                        <%  }  %>
-                    </div>
-                </section>
+                <%- include("../fragmente/galerie_statica.ejs") %>
 
 
 

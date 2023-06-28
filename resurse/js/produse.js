@@ -298,6 +298,7 @@ window.addEventListener("load",function() {
         sortareHC(-1);
     }
     function sortareCustom (semn,field1,field2,field3){
+        setCookie("sensSortare",semn,60000);
         var produse=document.getElementsByClassName("paginare");
         var v_produse= Array.from(produse);
         v_produse.sort(function (a,b){

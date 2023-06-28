@@ -563,8 +563,44 @@ h2{
 #watermark{
     display: none;
 }
+
+
+
 #banner{
-    display: none;
+    // display: none;
+    padding-left: 10%;
+    position:fixed;
+    width: 100%;
+    border: solid 2px black;
+    // opacity: 1;
+    bottom: 0%;
+        animation-name:animatie_banner;
+        animation-timing-function:linear;
+        animation-iteration-count:1;
+        animation-fill-mode:forwards;
+        animation-duration:5s;
+}
+
+$c1:var(--culoare-fundal);
+$c2:var(--culoare-highlight-primary);
+$c3:var(--culoare-highlight-secondary);
+
+@keyframes animatie_banner{
+    0% {left:100%; opacity:1; background-color: $c1;}
+    33.3333% {left:66%; opacity:1; background-color: $c2; border-color: $c3;}
+    66.6666% {left:33%; opacity:1; background-color: $c3; border-color: $c2;}
+    100% {left: 0%;opacity: 1; background-color: $c2; border-color: $c3;}
+    // #{$t2}{opacity:1;z-index:10;clip-path:inset(0% 0%);}
+    // #{$t1}{opacity:1;clip-path:inset(0% 0%);z-index:0;}
+    // #{$t3}{opacity:1;clip-path:inset(0% 0%);z-index:-10;}
+   
+    // 100%{opacity:1;z-index:-10;}
+}
+@media only screen and (max-width:1100px){
+    #banner{
+        left: 0%;opacity: 1; background-color: $c2; border-color: $c3;
+        animation:none;
+    }   
 }
 
 $aqua:#39D1B4;
